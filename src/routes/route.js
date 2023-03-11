@@ -5,6 +5,7 @@ import Signup from "../pages/SignupPage/Signup";
 import Gethering from "../pages/GetheringPage/Gethering";
 import Usergethering from "../pages/UsergetheringPage/Usergethering";
 import Getheringlist from "../pages/GetheringlistPage/Getheringlist";
+import RentalLocation from "../pages/RentalLocationPage/RentalLocation";
 
 export const ROUTE = {
   HOME: {
@@ -40,6 +41,11 @@ export const ROUTE = {
     path: "/getheringlist",
     link: "/getheringlist",
     element: Getheringlist,
+  },
+  RENTALLOCATION: {
+    path: "/location/rental",
+    link: "/location/rental",
+    element: RentalLocation,
   },
 };
 
