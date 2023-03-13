@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 blockquote,
 body,
@@ -49,6 +51,7 @@ html {
 :after,
 :before {
   box-sizing: inherit;
+  font-family: "Noto Sans KR", sans-serif;
 }
 img,
 video {
@@ -67,7 +70,7 @@ th {
   padding: 0;
 }
 
-body {
-  max-width: 720px;
-  margin: 0 auto;
+a {
+  text-decoration: none;
+  color: #000;
 }
