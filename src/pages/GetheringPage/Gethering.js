@@ -4,6 +4,7 @@ import {
   Form,
   FloatingLabel,
   Col,
+  Row,
   Button,
 } from 'react-bootstrap';
 
@@ -43,79 +44,61 @@ function Gethering () {
     setMemberSum(event.target.value);
   };
 
-
   return (
     <GetheringWrapper>
-      <div>
-        <Form.Label htmlFor="Title">제목</Form.Label>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            // label="제목"
-            className="mb-4"
-            onChange={handleTitle}
-          >
-            <Form.Control 
-            as="textarea" 
-            placeholder="제목을 입력" 
-            />
-          </FloatingLabel>
-      </div>
-      <div>
-          <Form.Label>날짜</Form.Label>
-          <input type="datetime-local"></input> 
-        </div>
-      <div>
-        <Form.Label htmlFor="RentalShop">대여소</Form.Label>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            className="mb-4"
-            onChange={handleRentalShop}
-          >
-            <Form.Control 
-            as="textarea"
-            placeholder="대여소 입력" 
-            />
-          </FloatingLabel>
-      </div>
-
+      <>
         <Col>
+          <Form.Label htmlFor="Title">제목</Form.Label>
+            <Form.Control 
+              type="text"
+              placeholder="제목 입력" 
+              onChange={handleTitle}
+            />
+          <br />
+          <Form.Label>날짜</Form.Label>
+            <input type="datetime-local"></input> 
+          <br />
+          <Form.Label htmlFor="RentalShop">대여소</Form.Label>
+            <Form.Control 
+              type="text"
+              placeholder="대여소 입력"
+              onChange={handleRentalShop}
+            />
+          <br />
           <Form.Label htmlFor="LeadTime">예상소요시간</Form.Label>
             <Form.Control
               type="Number"
               placeholder="소요시간 입력" 
               onChange={handleLeadTime}
             />
-
+          <br />
           <Form.Label htmlFor="MemberSum">인원</Form.Label>
             <Form.Control
             type="Number"
             placeholder="인원 입력"
             onChange={handleMemberSum}
           />
-        </Col>
-
-        <div>
-        <Form.Label htmlFor="Content">내용</Form.Label>
-          <FloatingLabel
-            controlId="floatingTextarea"
-            className="mb-4"
-          >
-            <Form.Control 
-            type="text"
-            as="textarea" 
-            placeholder="내용 입력" 
-            style={{ height: '110px' }}
-            onChange={handleContent}
-            />
-          </FloatingLabel>
-      </div>
-      <div>         
-        <Button variant="primary"> 
-          {/* onClick={handleShow} */}
-          등록
-        </Button>
-      </div>   
-
+          <br />
+          <Form.Label htmlFor="Content">내용</Form.Label>
+            <FloatingLabel
+              controlId="floatingTextarea"
+              className="mb-4"
+            >
+              <Form.Control 
+              type="text"
+              as="textarea" 
+              placeholder="내용 입력" 
+              style={{ height: '110px' }}
+              onChange={handleContent}
+              />
+            </FloatingLabel>
+          
+          <Button variant="primary"> 
+            {/* onClick={handleShow} */}
+            등록
+          </Button>
+        </Col>   
+      </>
     </GetheringWrapper>
   );
 };
