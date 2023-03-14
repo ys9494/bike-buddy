@@ -22,8 +22,8 @@ const Header = () => {
             <Link to={ROUTE.SGINUP.link}>회원가입</Link>
           </GotoAccount>
           <Nav>
-            <Link to="">대여소 보기</Link>
-            <Link to="">모임</Link>
+            <Link to={ROUTE.RENTALLOCATION.link}>대여소 보기</Link>
+            <Link to={ROUTE.GETHERINGLIST.link}>모임</Link>
           </Nav>
         </NavContainer>
       </AlignCenter>

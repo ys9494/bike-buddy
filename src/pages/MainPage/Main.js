@@ -1,9 +1,12 @@
-import { MainWrapper } from "./main-styled";
+import { MainWrapper, ChartWrapper } from "./main-styled";
 
 const Main = () => {
   return (
     <MainWrapper>
-      <div>main page</div>
+      <h1>main page</h1>
+      <ChartWrapper>
+        <div>차트</div>
+      </ChartWrapper>
     </MainWrapper>
   );
 };
