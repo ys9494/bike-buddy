@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { RentalLocationWrapper } from "./rental-location-styled";
+import Map from "./Map";
 
 const RentalLocation = () => {
   const [bikeData, setBikeData] = useState([]);
-
-  const BIKE_KEY = "6345704f6e73796b3131336653744c70";
 
   const getData = async () => {
     const result = [];
 
     await fetch(
-      `http://openapi.seoul.go.kr:8088/${BIKE_KEY}/json/bikeList/1/1000/`
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1/1000/`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -19,7 +18,7 @@ const RentalLocation = () => {
       });
 
     await fetch(
-      `http://openapi.seoul.go.kr:8088/${BIKE_KEY}/json/bikeList/1001/2000/`
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1001/2000/`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -28,7 +27,7 @@ const RentalLocation = () => {
       });
 
     await fetch(
-      `http://openapi.seoul.go.kr:8088/${BIKE_KEY}/json/bikeList/2001/3000/`
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/2001/3000/`
     )
       .then((response) => response.json())
       .then((response) => {
@@ -39,18 +38,11 @@ const RentalLocation = () => {
     setBikeData(result);
   };
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-
-  useEffect(() => {
-    console.log("bike data", bikeData);
-  }, [bikeData]);
-
   return (
     <RentalLocationWrapper>
       <div>대여소 정보 페이지</div>
       <button onClick={getData}>get data</button>
+      <Map data={bikeData} />
     </RentalLocationWrapper>
   );
 };
