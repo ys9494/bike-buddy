@@ -32,12 +32,12 @@ export const ROUTE = {
     link: "/gathering",
     element: Gathering,
   },
-  USERGATHERING: {
+  USER_GATHERING: {
     path: "/usergathering",
     link: "/usergathering",
     element: Usergathering,
   },
-  GATHERINGLIST: {
+  GATHERING_LIST: {
     path: "/gatheringlist",
     link: "/gatheringlist",
     element: Gatheringlist,

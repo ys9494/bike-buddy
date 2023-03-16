@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useRef} from 'react';
 import { GatheringWrapper } from "./gathering-styled";
 import {
   Form,
@@ -9,23 +9,32 @@ import {
 
 
 function Gathering () {
-  const [title, setTitle] = useState();
+  // const [title, setTitle] = useState();
   const [rentalshop, setRentalShop] = useState();
   const [leadtime, setLeadTime] = useState();
   const [content, setContent] = useState();
   const [membersum,setMemberSum ] = useState();
 
+  const titleRef = useRef();
+
+  // ?이거 빼도 되나?
   const formdata = new FormData();
-  formdata.append('title', title);
+  // formdata.append('title', title);
   formdata.append('rentalshop', rentalshop);
   formdata.append('leadtime', leadtime);
   formdata.append('content', content);
   formdata.append('membersum', membersum);
 
-  const handleTitle = (event) => {
+  const handleSubmit = () => {
+    const title = titleRef.current.value;
+    console.log(title);
+  };
+
+  /*const handleTitle = (event) => {
     event.preventDefault();
     setTitle(event.target.value);
-  };
+  };*/
+
   const handleRentalShop = (event) => {
     event.preventDefault();
     setRentalShop(event.target.value);
@@ -50,8 +59,9 @@ function Gathering () {
           <Form.Label htmlFor="Title">제목</Form.Label>
             <Form.Control 
               type="text"
-              placeholder="제목 입력" 
-              onChange={handleTitle}
+              placeholder="제목 입력"
+              ref = {titleRef}
+              onChange={handleSubmit}
             />
           <br />
           <Form.Label>날짜</Form.Label>
