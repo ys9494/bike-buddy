@@ -1,15 +1,14 @@
 import React,{useState} from 'react';
-import { GetheringWrapper } from "./gethering-styled";
+import { GatheringWrapper } from "./gathering-styled";
 import {
   Form,
   FloatingLabel,
   Col,
-  Row,
   Button,
 } from 'react-bootstrap';
 
 
-function Gethering () {
+function Gathering () {
   const [title, setTitle] = useState();
   const [rentalshop, setRentalShop] = useState();
   const [leadtime, setLeadTime] = useState();
@@ -45,7 +44,7 @@ function Gethering () {
   };
 
   return (
-    <GetheringWrapper>
+    <GatheringWrapper>
       <>
         <Col>
           <Form.Label htmlFor="Title">제목</Form.Label>
@@ -99,8 +98,8 @@ function Gethering () {
           </Button>
         </Col>   
       </>
-    </GetheringWrapper>
+    </GatheringWrapper>
   );
 };
 
-export default Gethering;
+export default Gathering;

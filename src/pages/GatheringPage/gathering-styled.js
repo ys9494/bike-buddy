@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// const GetheringWrapper = styled.div`
+// const GatheringWrapper = styled.div`
 //   background-color: teal;
 //   width: 100px;
 //   height: 100px;
@@ -22,7 +22,7 @@ import styled from "styled-components";
 //   height: 100px;
 // `;
 
-// function GetheringWrapper() {
+// function GatheringWrapper() {
 //   return (
 //     <div>
 //       <Title>
@@ -32,7 +32,7 @@ import styled from "styled-components";
 //   );
 // }
 
-export const GetheringWrapper= styled.div`
+export const GatheringWrapper= styled.div`
   display: flex;
   flex-direction: column;
   position: relative;

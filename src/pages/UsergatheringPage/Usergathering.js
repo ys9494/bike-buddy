@@ -1,4 +1,4 @@
-import { UsergetheringWrapper } from "./usergethering-styled";
+import { UsergatheringWrapper } from "./usergathering-styled";
 import React,{useState} from 'react';
 import {
   Form,
@@ -7,7 +7,7 @@ import {
   Button,
 } from 'react-bootstrap';
 
-const Usergethering = () => {
+const Usergathering = () => {
     const [title, setTitle] = useState();
     const [rentalshop, setRentalShop] = useState();
     const [leadtime, setLeadTime] = useState();
@@ -44,7 +44,7 @@ const Usergethering = () => {
   
   
     return (
-      <UsergetheringWrapper>
+      <UsergatheringWrapper>
         <div>
           <Form.Label htmlFor="Title">제목</Form.Label>
             <FloatingLabel
@@ -122,8 +122,8 @@ const Usergethering = () => {
         </div>   
   
           
-      </UsergetheringWrapper>
+      </UsergatheringWrapper>
     );
   };
 
-export default Usergethering;
+export default Usergathering;
