@@ -1,9 +1,12 @@
 import React,{useState, useRef} from 'react';
-import { GatheringWrapper } from "./gathering-styled";
+import { 
+  GatheringWrapper, 
+  InputWrapper,
+  GatheringForm,
+} from "./gathering-styled";
 import {
   Form,
   FloatingLabel,
-  Col,
   Button,
 } from 'react-bootstrap';
 
@@ -53,62 +56,75 @@ function Gathering () {
   };
 
   return (
-    <GatheringWrapper>
-      <>
-        <Col>
-          <Form.Label htmlFor="Title">제목</Form.Label>
-            <Form.Control 
+    <>
+      <GatheringWrapper>
+        <GatheringForm>
+          <InputWrapper>
+            <label>제목</label>
+            <input
               type="text"
-              placeholder="제목 입력"
-              ref = {titleRef}
-              onChange={handleSubmit}
+              required
+              // value={title}
+              // onChange={(e) => setTitle(e.target.value)}
+              placeholder="제목을 입력하세요"
             />
-          <br />
-          <Form.Label>날짜</Form.Label>
+          </InputWrapper>
+          <InputWrapper>
+            <label>날짜</label>
             <input type="datetime-local"></input> 
-          <br />
-          <Form.Label htmlFor="RentalShop">대여소</Form.Label>
-            <Form.Control 
+          </InputWrapper>
+          <InputWrapper>
+            <label>대여소</label>
+            <input
               type="text"
-              placeholder="대여소 입력"
-              onChange={handleRentalShop}
+              required
+              // value={rentalshop}
+              // onChange={(e) => setRentalshop(e.target.value)}
+              placeholder="대여소를 입력하세요"
             />
-          <br />
-          <Form.Label htmlFor="LeadTime">예상소요시간</Form.Label>
-            <Form.Control
+          </InputWrapper>
+          <InputWrapper>
+            <label>소요시간</label>
+            <input
               type="Number"
-              placeholder="소요시간 입력" 
-              onChange={handleLeadTime}
+              required
+              // value={time}
+              // onChange={(e) => setTime(e.target.value)}
+              placeholder="소요시간을 입력하세요"
             />
-          <br />
-          <Form.Label htmlFor="MemberSum">인원</Form.Label>
-            <Form.Control
-            type="Number"
-            placeholder="인원 입력"
-            onChange={handleMemberSum}
-          />
-          <br />
-          <Form.Label htmlFor="Content">내용</Form.Label>
-            <FloatingLabel
-              controlId="floatingTextarea"
-              className="mb-4"
-            >
-              <Form.Control 
-              type="text"
-              as="textarea" 
-              placeholder="내용 입력" 
-              style={{ height: '110px' }}
-              onChange={handleContent}
-              />
-            </FloatingLabel>
-          
+          </InputWrapper>
+          <InputWrapper>
+            <label>인원</label>
+            <input
+              type="Number"
+              required
+              // value={count}
+              // onChange={(e) => setCount(e.target.value)}
+              placeholder="인원을 입력하세요"
+            />
+          </InputWrapper>
+          <InputWrapper>
+            <Form.Label htmlFor="Content">내용</Form.Label>
+              <FloatingLabel
+                controlId="floatingTextarea"
+                className="mb-4"
+              >
+                <Form.Control 
+                type="text"
+                as="textarea" 
+                placeholder="내용을 입력하세요" 
+                style={{ height: '110px', width: '250px' }}
+                onChange={handleContent}
+                />
+              </FloatingLabel>
+          </InputWrapper>
           <Button variant="primary"> 
             {/* onClick={handleShow} */}
             등록
           </Button>
-        </Col>   
-      </>
-    </GatheringWrapper>
+        </GatheringForm>   
+      </GatheringWrapper>
+    </>
   );
 };
 

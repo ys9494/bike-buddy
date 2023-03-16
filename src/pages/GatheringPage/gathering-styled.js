@@ -1,15 +1,5 @@
 import styled from "styled-components";
 
-// const Title= styled.div`
-//   display: flex;
-//   color:darkolivegreen;
-
-//   h1{
-//     font-size: 30px;
-//     margin: 0 10px 10px 0;
-//   }
-// `;
-
 export const GatheringWrapper = styled.div`
   display: flex;
   margin: 10px 400px;
@@ -20,4 +10,14 @@ export const GatheringWrapper = styled.div`
   font-size: 20px;
   font-weight: bold;
   color: green;
+`;
+
+export const InputWrapper = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+  margin: 10px 0px;
+`;
+
+export const GatheringForm = styled.div`
 `;

@@ -12,3 +12,15 @@ export const UsergatheringWrapper = styled.div`
   color: green;
   `;
 
+export const UsergatheringForm = styled.div`
+  `;
+  
+export const InputWrapper = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
+  margin: 10px 0px;
+  label{
+    margin-right:10px;
+  }
+  `;
