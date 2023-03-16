@@ -2,9 +2,10 @@ import Main from "../pages/MainPage/Main";
 import NotFound from "../pages/NotFoundPage/NotFound";
 import Login from "../pages/LoginPage/Login";
 import Signup from "../pages/SignupPage/Signup";
-import Gethering from "../pages/GetheringPage/Gethering";
-import Usergethering from "../pages/UsergetheringPage/Usergethering";
-import Getheringlist from "../pages/GetheringlistPage/Getheringlist";
+import Gathering from "../pages/GatheringPage/Gathering";
+import Usergathering from "../pages/UsergatheringPage/Usergathering";
+import Gatheringlist from "../pages/GatheringlistPage/Gatheringlist";
+import RentalLocation from "../pages/RentalLocationPage/RentalLocation";
 
 export const ROUTE = {
   HOME: {
@@ -26,20 +27,25 @@ export const ROUTE = {
     link: "/signup",
     element: Signup,
   },
-  GETHERING: {
-    path: "/gethering",
-    link: "/gethering",
-    element: Gethering,
+  GATHERING: {
+    path: "/gathering",
+    link: "/gathering",
+    element: Gathering,
   },
-  USERGETHERING: {
-    path: "/usergethering",
-    link: "/usergethering",
-    element: Usergethering,
+  USER_GATHERING: {
+    path: "/usergathering",
+    link: "/usergathering",
+    element: Usergathering,
   },
-  GETHERINGLIST: {
-    path: "/getheringlist",
-    link: "/getheringlist",
-    element: Getheringlist,
+  GATHERING_LIST: {
+    path: "/gatheringlist",
+    link: "/gatheringlist",
+    element: Gatheringlist,
+  },
+  RENTALLOCATION: {
+    path: "/location/rental",
+    link: "/location/rental",
+    element: RentalLocation,
   },
 };
 
