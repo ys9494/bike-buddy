@@ -38,11 +38,14 @@ const RentalLocation = () => {
     setBikeData(result);
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <RentalLocationWrapper>
-      <div>대여소 정보 페이지</div>
-      <button onClick={getData}>get data</button>
-      <Map data={bikeData} />
+      <h1>대여소 정보 페이지</h1>
+      <Map bikeData={bikeData} />
     </RentalLocationWrapper>
   );
 };
