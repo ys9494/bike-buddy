@@ -45,81 +45,62 @@ const Usergathering = () => {
   
     return (
       <UsergatheringWrapper>
-        <div>
-          <Form.Label htmlFor="Title">제목</Form.Label>
-            <FloatingLabel
-              controlId="floatingTextarea"
-              // label="제목"
-              className="mb-4"
-              onChange={handleTitle}
-            >
-              <Form.Control 
-              as="textarea" 
-              // placeholder="제목을 입력해주세요." 
-              />
-            </FloatingLabel>
-        </div>
-        <div>
-          <Form.Label>날짜</Form.Label>
-          <input type="datetime-local"></input> 
-        </div>
-        <div>
-          <Form.Label htmlFor="RentalShop">대여소 정보</Form.Label>
-            <FloatingLabel
-              controlId="floatingTextarea"
-              className="mb-4"
-              onChange={handleRentalShop}
-            >
-              <Form.Control 
-              as="textarea" 
-              />
-            </FloatingLabel>
-        </div>
-
         <Col>
-          <Form.Label htmlFor="LeadTime">예상소요시간</Form.Label>
-            <Form.Control
-              type="Number"
-              onChange={handleLeadTime}
-            />
-
-          <Form.Label htmlFor="MemberSum">인원</Form.Label>
-            <Form.Control
-            type="Number"
-            onChange={handleMemberSum}
-            /* value={membercount}
-            onChange={(e) => {
-            e.preventDefault();
-            setMemberCount(e.target.value);
-            }}*/
-          />
-        </Col>
           <div>
-          <Form.Label htmlFor="Content">내용</Form.Label>
-            <FloatingLabel
-              controlId="floatingTextarea"
-              className="mb-4"
-              onChange={handleContent}
-            >
+            <Form.Label htmlFor="Title">제목</Form.Label>
               <Form.Control 
-              type="text"
-              as="textarea" 
-              style={{ height: '110px' }}
+                type="text"
+                // ref = {titleRef}
+                onChange={handleTitle}
               />
-            </FloatingLabel>
-        </div>
-        <div>         
-          <Col>
-            <Button variant="primary"> 
-              {/* onClick={handleShow} */}
-              수정
-            </Button>
-  
-            <Button variant="primary">
-              삭제
-            </Button>
-          </Col>
-        </div>   
+            <br />
+            <Form.Label>날짜</Form.Label>
+            <input type="datetime-local"></input> 
+            <br />
+            <Form.Label htmlFor="RentalShop">대여소</Form.Label>
+              <Form.Control 
+                type="text"
+                onChange={handleRentalShop}
+              />
+            <br />
+            <Form.Label htmlFor="LeadTime">예상소요시간</Form.Label>
+              <Form.Control
+                type="Number"
+                onChange={handleLeadTime}
+              />
+            <br />
+            <Form.Label htmlFor="MemberSum">인원</Form.Label>
+              <Form.Control
+              type="Number"
+              onChange={handleMemberSum}
+              /* value={membercount}
+              onChange={(e) => {
+              e.preventDefault();
+              setMemberCount(e.target.value);
+              }}*/
+            />
+            <br />
+            <Form.Label htmlFor="Content">내용</Form.Label>
+              <FloatingLabel
+                controlId="floatingTextarea"
+                className="mb-4"
+                onChange={handleContent}
+              >
+                <Form.Control 
+                type="text"
+                as="textarea" 
+                style={{ height: '110px' }}
+                />
+              </FloatingLabel>
+              <Button variant="primary"> 
+                {/* onClick={handleShow} */}
+                수정
+              </Button>
+              <Button variant="primary">
+                삭제
+              </Button>
+          </div>
+        </Col>   
   
           
       </UsergatheringWrapper>

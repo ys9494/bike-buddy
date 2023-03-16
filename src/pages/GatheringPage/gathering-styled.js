@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-// const GatheringWrapper = styled.div`
-//   background-color: teal;
-//   width: 100px;
-//   height: 100px;
-// `;
-
 // const Title= styled.div`
 //   display: flex;
 //   color:darkolivegreen;
@@ -16,30 +10,14 @@ import styled from "styled-components";
 //   }
 // `;
 
-// const Box = styled.div`
-//   background-color: teal;
-//   width: 100px;
-//   height: 100px;
-// `;
-
-// function GatheringWrapper() {
-//   return (
-//     <div>
-//       <Title>
-//         <Box />
-//       </Title>
-//     </div>
-//   );
-// }
-
-export const GatheringWrapper= styled.div`
+export const GatheringWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  position: relative;
-  top:50px;
-  width: flex;
+  margin: 10px 400px;
   background-color: beige;
-  padding:20px;
-  align-items: center;
-
+  padding:80px;
+  align-items: left;
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  color: green;
 `;
