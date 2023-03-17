@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import {
   Container as MapDiv,
   NaverMap,
@@ -10,8 +10,17 @@ import { MapWrapper, LocationInfoWrapper, MapContainer } from "./map-styled";
 const Map = ({ bikeData }) => {
   const [locationData, setLocationData] = useState(null);
 
+  /** 지도 경도 위도값 */
+  const [maxLongitude, setMaxLongitude] = useState(0);
+  const [minLongitude, setMinLongitude] = useState(0);
+  const [maxLatitude, setMaxLatitude] = useState(0);
+  const [minLatitude, setMinLatitude] = useState(0);
+
   // instead of window.naver.maps
   const navermaps = useNavermaps();
+
+  /** 지도 이동 시 위도, 경도 값 얻기 위한 state */
+  const [map, setMap] = useState(null);
 
   useEffect(() => {
     console.log("data", locationData);
@@ -21,9 +30,30 @@ const Map = ({ bikeData }) => {
     console.log("bike data", bikeData);
   }, [bikeData]);
 
-  //   stationName;
-  //   parkingBikeTotCnt;
-  // rackTotCnt;
+  useEffect(() => {
+    if (!map) return;
+    const bounds = map.bounds;
+
+    setMaxLongitude(bounds._max._lng);
+    setMinLongitude(bounds._min._lng);
+    setMaxLatitude(bounds._max._lat);
+    setMinLatitude(bounds._min._lat);
+  }, [map]);
+
+  /** 지도의 위도 경도 값으로 데이터 필터링 */
+  const filteredBikeData = useMemo(() => {
+    return bikeData.filter((b) => {
+      const lat = parseFloat(b.stationLatitude);
+      const long = parseFloat(b.stationLongitude);
+
+      return (
+        lat < maxLatitude &&
+        lat > minLatitude &&
+        long < maxLongitude &&
+        long > minLongitude
+      );
+    });
+  }, [bikeData, maxLongitude, minLongitude, maxLatitude, minLatitude]);
 
   return (
     <MapWrapper>
@@ -57,16 +87,24 @@ const Map = ({ bikeData }) => {
           }}
         >
           <NaverMap
+            ref={setMap}
             defaultCenter={
               new navermaps.LatLng(
                 bikeData[0]?.stationLatitude || 37.5556488,
                 bikeData[0]?.stationLongitude || 126.91062927
               )
             }
+            minZoom={12}
             defaultZoom={15}
+            onBoundsChanged={(bounds) => {
+              setMaxLongitude(bounds._max._lng);
+              setMinLongitude(bounds._min._lng);
+              setMaxLatitude(bounds._max._lat);
+              setMinLatitude(bounds._min._lat);
+            }}
           >
-            {bikeData &&
-              bikeData?.map((item) => {
+            {filteredBikeData &&
+              filteredBikeData?.map((item) => {
                 return (
                   <Marker
                     onClick={() => setLocationData(item)}
