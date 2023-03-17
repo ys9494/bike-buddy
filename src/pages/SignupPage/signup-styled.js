@@ -12,15 +12,28 @@ export const SignupWrapper = styled.div`
   }
 `;
 
-export const SignupForm = styled.div`
+export const SignupForm = styled.form`
   margin-top: 20px;
   font-size: 20px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+
+  button {
+    background-color: black;
+    color: white;
+    margin-top: 40px;
+    font-size: 20px;
+    padding: 5px 20px;
+    width: 200px;
+  }
 `;
 
 export const InputWrapper = styled.div`
   margin-top: 25px;
-`;
-
-export const SignupButton = styled.div`
-  margin-top: 50px;
+  input {
+    padding: 10px;
+    font-size: 15px;
+    width: 400px;
+  }
 `;
