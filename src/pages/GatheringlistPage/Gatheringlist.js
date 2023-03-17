@@ -7,8 +7,8 @@ function Gatheringlist () {
   // const [gethering, setGethering] = useState([]);
 
   return (
-    <GatheringlistWrapper>
-      <div>
+    <>
+      <GatheringlistWrapper>
         <h1 className="container px-4 px-lg-5 my-5"></h1>
         <section className="py-1">
           <div className="container px-4 px-lg-5 my-1">
@@ -25,6 +25,7 @@ function Gatheringlist () {
                                 모임 리스트
                               </Form.Label>
                             </Form>
+                            <p>제목</p>
                           </div>
                         </th>
                       </tr>
@@ -52,8 +53,8 @@ function Gatheringlist () {
             </div>
           </div>
         </section>
-      </div>
-    </GatheringlistWrapper>
+      </GatheringlistWrapper>
+    </>
   );
 };
 

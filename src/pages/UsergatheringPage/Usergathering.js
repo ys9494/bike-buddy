@@ -1,49 +1,34 @@
 import { UsergatheringWrapper,
   UsergatheringForm,
-  InputWrapper 
+  InputWrapper,
+  ButtonWrapper, 
 } from "./usergathering-styled";
 import React,{useState} from 'react';
 import {
-  Form,
-  FloatingLabel,
   Button,
+  Form,
 } from 'react-bootstrap';
 
 const Usergathering = () => {
     const [title, setTitle] = useState();
+    const [date, setDate] = useState();
     const [rentalshop, setRentalShop] = useState();
-    const [leadtime, setLeadTime] = useState();
+    const [time, setTime] = useState();
     const [content, setContent] = useState();
-    const [membersum,setMemberSum ] = useState();
+    const [count,setCount ] = useState();
+    
+    // useEffect(()=> {
+    // },[]);
+    
   
-    const formdata = new FormData();
-    formdata.append('title', title);
-    formdata.append('rentalshop', rentalshop);
-    formdata.append('leadtime', leadtime);
-    formdata.append('content', content);
-    formdata.append('membersum', membersum);
-  
-    const handleTitle = (event) => {
+    const handleModify = (event) => {
       event.preventDefault();
-      setTitle(event.target.value);
+      
     };
-    const handleRentalShop = (event) => {
+    const handleDelete = (event) => {
       event.preventDefault();
-      setRentalShop(event.target.value);
     };
-    const handleLeadTime = (event) => {
-      event.preventDefault();
-      setLeadTime(event.target.value);
-    };
-    const handleContent = (event) => {
-      event.preventDefault();
-      setContent(event.target.value);
-    };
-    const handleMemberSum = (event) => {
-        event.preventDefault();
-        setMemberSum(event.target.value);
-      };
-  
+
   
     return (
       <>
@@ -52,64 +37,52 @@ const Usergathering = () => {
             <InputWrapper>
               <label>제목</label>
               <input
-                type="text"
-                required
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
-              />
+                type = "title"
+                placeholder = {title} />
             </InputWrapper>
             <InputWrapper>
               <label>날짜</label>
-              <input type="datetime-local"></input> 
+              <input
+                type = "date"
+                placeholder = {date} />
             </InputWrapper>
-            <Form.Label htmlFor="RentalShop">대여소</Form.Label>
-              <Form.Control 
-                type="text"
-                onChange={handleRentalShop}
-              />
             <InputWrapper>
-            <label>소요시간</label>
-            <input
-              type="Number"
-              required
-              // value={time}
-              // onChange={(e) => setTime(e.target.value)}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <label>인원</label>
-            <input
-              type="Number"
-              required
-              // value={count}
-              // onChange={(e) => setCount(e.target.value)}
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <Form.Label htmlFor="Content">내용</Form.Label>
-              <FloatingLabel
-                controlId="floatingTextarea"
-                className="mb-4"
-              >
-                <Form.Control 
-                type="text"
-                as="textarea" 
-                style={{ height: '110px', width: '250px' }}
-                onChange={handleContent}
-                />
-              </FloatingLabel>
-          </InputWrapper>
-              <Button variant="primary"> 
-                {/* onClick={handleShow} */}
-                수정
-              </Button>
-              <Button variant="primary">
-                삭제
-              </Button>
+              <label>대여소</label>
+              <input
+                type = "rentalshop"
+                placeholder = {rentalshop} />
+            </InputWrapper>
+            <InputWrapper>
+              <label>소요시간</label>
+              <input
+                type = "time"
+                placeholder = {time} />
+            </InputWrapper>
+            <InputWrapper>
+              <label>인원</label>
+              <input
+                type = "number"
+                placeholder = {count} />
+            </InputWrapper>
+            <InputWrapper>
+              <label>내용</label>
+              <input
+                type = "content"
+                placeholder = {content}
+                style={{ height: '110px', width: '220px' }} />
+            </InputWrapper>
+          <ButtonWrapper>
+            <Button variant="primary" onClick={()=> handleModify()}> 
+              수정
+            </Button>
+            <Button variant="primary" onClick={()=> handleDelete()}>
+              삭제
+            </Button>
+          </ButtonWrapper>
           </UsergatheringForm>
         </UsergatheringWrapper>      
       </>
     );
-  };
+};
 
 export default Usergathering;
