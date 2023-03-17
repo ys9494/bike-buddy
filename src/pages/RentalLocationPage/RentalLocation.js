@@ -6,36 +6,25 @@ const RentalLocation = () => {
   const [bikeData, setBikeData] = useState([]);
 
   const getData = async () => {
-    const result = [];
+    const reqUrls = [
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1/1000/`,
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1001/2000/`,
+      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/2001/3000/`,
+    ];
 
-    await fetch(
-      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1/1000/`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("data1", response.rentBikeStatus.row);
-        result.push(...response.rentBikeStatus.row);
-      });
-
-    await fetch(
-      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/1001/2000/`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("data2", response.rentBikeStatus.row);
-        result.push(...response.rentBikeStatus.row);
-      });
-
-    await fetch(
-      `http://openapi.seoul.go.kr:8088/${process.env.REACT_APP_BIKE_API_KEY}/json/bikeList/2001/3000/`
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("data3", response.rentBikeStatus.row);
-        result.push(...response.rentBikeStatus.row);
-      });
-
-    setBikeData(result);
+    await Promise.all(reqUrls.map((url) => fetch(url)))
+      .then(async (res) => {
+        return Promise.all(res.map(async (data) => await data.json()));
+      })
+      .then((res) => {
+        const newArr = [
+          ...res[0].rentBikeStatus.row,
+          ...res[1].rentBikeStatus.row,
+          ...res[2].rentBikeStatus.row,
+        ];
+        setBikeData(newArr);
+      })
+      .catch((err) => console.log("err", err));
   };
 
   useEffect(() => {

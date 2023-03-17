@@ -5,7 +5,12 @@ import {
   Marker,
   useNavermaps,
 } from "react-naver-maps";
-import { MapWrapper, LocationInfoWrapper, MapContainer } from "./map-styled";
+import {
+  MapWrapper,
+  LocationInfoWrapper,
+  MapContainer,
+  AlertZoomInfo,
+} from "./map-styled";
 
 const Map = ({ bikeData }) => {
   const [locationData, setLocationData] = useState(null);
@@ -15,6 +20,9 @@ const Map = ({ bikeData }) => {
   const [minLongitude, setMinLongitude] = useState(0);
   const [maxLatitude, setMaxLatitude] = useState(0);
   const [minLatitude, setMinLatitude] = useState(0);
+
+  /** zoom 값 */
+  const [zoom, setZoom] = useState(15);
 
   // instead of window.naver.maps
   const navermaps = useNavermaps();
@@ -55,9 +63,19 @@ const Map = ({ bikeData }) => {
     });
   }, [bikeData, maxLongitude, minLongitude, maxLatitude, minLatitude]);
 
+  /** 줌 바꼈을 때 실행 */
+  const zoomListener = () => {
+    console.log("changed", map.zoom);
+    setZoom(map?.zoom);
+  };
+
   return (
     <MapWrapper>
       <LocationInfoWrapper>
+        {zoom <= 13 && (
+          <AlertZoomInfo>대여소 위치 정보를 확인하려면 지도 확대</AlertZoomInfo>
+        )}
+
         {locationData && (
           <>
             <h1>대여소 정보</h1>
@@ -94,7 +112,8 @@ const Map = ({ bikeData }) => {
                 bikeData[0]?.stationLongitude || 126.91062927
               )
             }
-            minZoom={12}
+            onZoomChanged={zoomListener}
+            // minZoom={12}
             defaultZoom={15}
             onBoundsChanged={(bounds) => {
               setMaxLongitude(bounds._max._lng);
@@ -103,7 +122,8 @@ const Map = ({ bikeData }) => {
               setMinLatitude(bounds._min._lat);
             }}
           >
-            {filteredBikeData &&
+            {zoom > 13 &&
+              filteredBikeData &&
               filteredBikeData?.map((item) => {
                 return (
                   <Marker
