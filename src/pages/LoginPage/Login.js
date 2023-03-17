@@ -1,17 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, {
+  useRef,
+  useState,
+  // , useNavigate
+} from "react";
 // import { useCallback } from "react";
-import {
-  LoginWrapper,
-  LoginForm,
-  InputWrapper,
-  LoginButton,
-} from "./login-styled";
+import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const passwordRef = useRef();
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -20,6 +21,7 @@ const Login = () => {
         <LoginForm>
           <InputWrapper>
             <label>이메일</label>
+            <br />
             <input
               type="email"
               required
@@ -30,6 +32,7 @@ const Login = () => {
           </InputWrapper>
           <InputWrapper>
             <label>비밀번호</label>
+            <br />
             <input
               type="password"
               required
@@ -39,7 +42,14 @@ const Login = () => {
               placeholder="비밀번호를 입력하세요"
             />
           </InputWrapper>
-          <LoginButton>로그인</LoginButton>
+          <button
+            onClick={function handleClick() {
+              alert("로그인되었습니다.");
+            }}
+          >
+            <Link to="../main" style={{ textDecoration: "none" }}></Link>
+            로그인
+          </button>
         </LoginForm>
       </LoginWrapper>
     </>
