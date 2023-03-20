@@ -5,9 +5,13 @@ import {
   MygatheringItems,
 } from "./Mygathering-styled";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 const Mygathering = () => {
+  const me = {
+    id: 1,
+    name: 'Ash Lee'
+  }
   const [myGatheringList, setMyGatheringList] = useState([]);
 
   useEffect(() => {
@@ -23,6 +27,18 @@ const Mygathering = () => {
     fetchData();
   }, []);
 
+  const appliedGatheringList = useMemo(() => {
+    return myGatheringList.filter(gathering => {
+      return gathering.createdBy.id !== me.id
+    })
+  }, [myGatheringList, me])
+  const ownGatheringList = useMemo(() => {
+    return myGatheringList.filter(gathering => {
+      return gathering.createdBy.id === me.id
+    })
+  }, [myGatheringList, me])
+
+
   return (
     <>
       <MygatheringWrapper>
@@ -37,7 +53,7 @@ const Mygathering = () => {
           <div>대여소명</div>
           <button>참가취소</button>
 
-          {myGatheringList.map((item, index) => {
+          {appliedGatheringList.map((item, index) => {
             return (
               <MygatheringItems key={item.id} className="key">
                 <div>{item.title}</div>
@@ -57,6 +73,17 @@ const Mygathering = () => {
           <div>날짜</div>
           <div>대여소명</div>
           <button>참가취소</button>
+
+          {ownGatheringList.map((item, index) => {
+            return (
+              <MygatheringItems key={item.id} className="key">
+                <div>{item.title}</div>
+                <div>{item.date}</div>
+                <div>{item.rentalshop}</div>
+                <div>{item.time}</div>
+              </MygatheringItems>
+            );
+          })}
         </Mygatheringform>
       </MygatheringWrapper>
     </>
