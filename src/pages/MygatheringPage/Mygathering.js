@@ -8,26 +8,19 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Mygathering = () => {
-  const Mygathering = [{}];
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [rentalshop, setRentalShop] = useState();
-  const [time, setTime] = useState();
-  const [mygathering, setMygathering] = useState(Mygathering);
+  const [myGatheringList, setMyGatheringList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("");
-        setTitle(response.title);
-        setDate(response.date);
-        setRentalShop(response.rentalshop);
-        setTime(response.time);
+        const response = await axios.get("/api/gatherings");
+
+        setMyGatheringList(response.data)
       } catch (error) {
         console.error(error);
       }
     };
-    fetchData;
+    fetchData();
   }, []);
 
   return (
@@ -44,9 +37,9 @@ const Mygathering = () => {
           <div>대여소명</div>
           <button>참가취소</button>
 
-          {Mygathering.map((item, index) => {
+          {myGatheringList.map((item, index) => {
             return (
-              <MygatheringItems key={index} className="key">
+              <MygatheringItems key={item.id} className="key">
                 <div>{item.title}</div>
                 <div>{item.date}</div>
                 <div>{item.rentalshop}</div>
