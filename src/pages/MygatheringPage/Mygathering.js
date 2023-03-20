@@ -4,28 +4,17 @@ import {
   Mygatheringform,
   MygatheringItems,
 } from "./Mygathering-styled";
-import axios from "axios";
-import { useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
+
+import { useMyGatheringList } from '../../hooks/gathering.hook'
 
 const Mygathering = () => {
   const me = {
     id: 1,
     name: 'Ash Lee'
   }
-  const [myGatheringList, setMyGatheringList] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/gatherings");
-
-        setMyGatheringList(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { myGatheringList } = useMyGatheringList()
 
   const appliedGatheringList = useMemo(() => {
     return myGatheringList.filter(gathering => {
