@@ -16,14 +16,15 @@ export const LoginForm = styled.form`
   margin-top: 20px;
   font-size: 20px;
   flex-direction: column;
-
+  display: flex;
+  align-items: center;
   button {
     background-color: black;
     color: white;
     margin: 40px;
     font-size: 20px;
     padding: 5px 20px;
-    align-items: center; ///적용안됨 >> 로그인버튼 중간으로
+    width: 200px;
   }
 `;
 
@@ -36,6 +37,6 @@ export const InputWrapper = styled.div`
     //이메일이랑 이메일칸이랑 줄바꿈하기 '<br/>'로 처리?
     padding: 10px;
     font-size: 15px;
-    width: 100px;
+    width: 400px;
   }
 `;
