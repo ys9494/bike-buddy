@@ -23,7 +23,7 @@ const Header = () => {
           </GotoAccount>
           <Nav>
             <Link to={ROUTE.RENTALLOCATION.link}>대여소 보기</Link>
-            <Link to={ROUTE.GETHERINGLIST.link}>모임</Link>
+            <Link to={ROUTE.GATHERING_LIST.link}>모임</Link>
           </Nav>
         </NavContainer>
       </AlignCenter>
