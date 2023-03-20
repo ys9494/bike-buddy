@@ -1,20 +1,15 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
+import { fetchMyGatheringList } from '../networks/gather'
 
 export const useMyGatheringList = () => {
   const [myGatheringList, setMyGatheringList] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/api/gatherings");
+    (async () => {
+      const response = await fetchMyGatheringList()
 
-        setMyGatheringList(response.data)
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
+      setMyGatheringList(response.data)
+    })()
   }, []);
 
   return {
