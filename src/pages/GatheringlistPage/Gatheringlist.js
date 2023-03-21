@@ -1,10 +1,13 @@
 import React from 'react';
 import { Container, Row, Form } from 'react-bootstrap';
 import { GatheringlistWrapper } from "./gatheringlist-styled";
-// import Gethering from '../GetheringPage/Gethering';
+
+import { useGatheringList } from '../../hooks/gathering.hook'
 
 function Gatheringlist () {
-  // const [gethering, setGethering] = useState([]);
+  const {gatheringList, isLoading} = useGatheringList()
+
+  console.log('gatheringList : ', gatheringList)
 
   return (
     <>
@@ -15,7 +18,7 @@ function Gatheringlist () {
             <div className="row">
               <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
                 <div className="table-responsive">
-                  <table className="table">
+                  {isLoading ? <>로딩중..</> : <table className="table">
                     <thead>
                       <tr>
                         <th scope="col" className="border-0 bg-light">
@@ -31,23 +34,17 @@ function Gatheringlist () {
                       </tr>
                     </thead>
                     <tbody>
-                      <Container>
-                        <Row
-                          xs={2}
-                          className="justify-content-md-center align-top align-left"
-                        >
-                          {/* {title.map(() => {
-                            return (
-                              <Gethering
-                                // key={gethering._title}
-                                // gethering={gethering}
-                              />
-                            );
-                          })} */}
-                        </Row>
-                      </Container>
+                      {gatheringList.map(gathering => {
+                        return (
+                          <tr key={gathering.id}>
+                            <td>{gathering.id}</td>
+                            <td>{gathering.title}</td>
+                            <td>{gathering.description}</td>
+                          </tr>
+                        )
+                      })}
                     </tbody>
-                  </table>
+                  </table>}
                 </div>
               </div>
             </div>
