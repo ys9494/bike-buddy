@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "serve build -l 3000",
-    "deploy": "npm run build && pm2 reload pm2.config.js"
+    "deploy": "npm install && npm run build && pm2 reload pm2.config.js"
   },
   "eslintConfig": {
     "extends": [
