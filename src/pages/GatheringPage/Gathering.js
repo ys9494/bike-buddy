@@ -18,7 +18,6 @@ function Gathering () {
   const [count,setCount ] = useState();
   const [content, setContent] = useState();
 
- 
 
   const handleSubmit = () => {
     const formdata = new FormData();

@@ -6,7 +6,6 @@ import { UsergatheringWrapper,
 import React,{useState} from 'react';
 import {
   Button,
-  Form,
 } from 'react-bootstrap';
 
 const Usergathering = () => {
@@ -20,13 +19,15 @@ const Usergathering = () => {
     // useEffect(()=> {
     // },[]);
     
-  
-    const handleModify = (event) => {
-      event.preventDefault();
-      
+    // 수정
+    const handleModify = (e) => {
+      e.preventDefault();
+      alert('수정되었습니다.')
     };
-    const handleDelete = (event) => {
-      event.preventDefault();
+    // 삭제
+    const handleDelete = (e) => {
+      e.preventDefault();
+      
     };
 
   
@@ -72,10 +73,10 @@ const Usergathering = () => {
                 style={{ height: '110px', width: '220px' }} />
             </InputWrapper>
           <ButtonWrapper>
-            <Button variant="primary" onClick={()=> handleModify()}> 
+            <Button variant="primary" onClick={handleModify}> 
               수정
             </Button>
-            <Button variant="primary" onClick={()=> handleDelete()}>
+            <Button variant="primary" onClick={handleDelete}>
               삭제
             </Button>
           </ButtonWrapper>
