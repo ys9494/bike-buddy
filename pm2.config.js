@@ -1,8 +1,8 @@
 module.exports = {
   apps: [
     {
-      name: 'team10_frontend',
-      script: 'npm run start',
+      name: 'frontend',
+      script: 'npm run serve',
     },
   ],
 };
