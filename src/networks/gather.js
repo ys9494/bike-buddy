@@ -16,27 +16,26 @@ const DUMMY_GATHERING_LIST = [
   {
     id: 1,
     title: '모임1',
-    description: '모임1 설명설명설명'
+    rentalshop: 12,
+    content: '설명'
   },
   {
     id: 2,
     title: '모임2',
-    description: '모임2 설명설명설명'
+    rentalshop: 45,
+    content: '설명'
   },
   {
     id: 3,
     title: '모임3',
-    description: '모임3 설명설명설명'
+    rentalshop: 76,
+    content: '설명'
   },
   {
     id: 4,
     title: '모임4',
-    description: '모임4 설명설명설명'
-  },
-  {
-    id: 5,
-    title: '모임5',
-    description: '모임5 설명설명설명'
+    rentalshop: 8,
+    content: '설명'
   },
 ]
 
