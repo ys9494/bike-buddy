@@ -6,6 +6,9 @@ import {
   GatheringItemContainer,
 } from "./gatheringlist-styled";
 
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+
 function Gatheringlist() {
   const { gatheringList, isLoading } = useGatheringList();
 
@@ -19,11 +22,17 @@ function Gatheringlist() {
           <>로딩중..</>
         ) : (
           <GatheringItemContainer>
-            {gatheringList.map((gatheringItem) => {
-              return (
-                <GatheringItem key={gatheringItem.id} {...gatheringItem} />
-              );
-            })}
+            <Box sx={{ flexGrow: 1 }}>
+              <Grid container spacing={2}>
+                {gatheringList.map((gatheringItem) => {
+                  return (
+                    <Grid item xs={12} sm={6} md={4} key={gatheringItem.id}>
+                      <GatheringItem {...gatheringItem} />
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Box>
           </GatheringItemContainer>
         )}
       </div>
