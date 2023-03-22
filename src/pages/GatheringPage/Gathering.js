@@ -1,69 +1,27 @@
-import React, { useEffect, useState } from "react";
-import {
-  GatheringWrapper,
+import React,{ useState } from 'react';
+import { 
+  GatheringWrapper, 
   InputWrapper,
   GatheringForm,
   ButtonWrapper,
 } from "./gathering-styled";
-<<<<<<< HEAD
 import {
   Button,
 } from 'react-bootstrap';
-// import * as API from "../";
-=======
-import { Button } from "react-bootstrap";
-import { useParams } from "react-router";
-
 import * as API from "../../commons/api";
->>>>>>> b5e2c1f6ab4112602f4d5228e1c76fb1a8716487
 
-function Gathering() {
+function Gathering () {
   const [title, setTitle] = useState();
   const [date, setDate] = useState();
   const [rentalshop, setRentalShop] = useState();
   const [time, setTime] = useState();
-  const [count, setCount] = useState();
+  const [count,setCount ] = useState();
   const [content, setContent] = useState();
 
-<<<<<<< HEAD
 
-  const handleSubmit = () => {
-    // const formdata = new FormData();
-    //   formdata.append('title', title);
-    //    // console.log(title);
-    //   formdata.append('date', date);
-    //   formdata.append('rentalshop', rentalshop);
-    //   formdata.append('time', time);
-    //   formdata.append('count', count);
-    //   formdata.append('content', content);
+  const handleSubmit = async() => {
 
-      const data= {
-        title,
-        date,
-        rentalshop,
-        time,
-        count,
-        content,
-      };
-
-      //await API.post("/주소" data);
-  };
-
- 
-=======
-  const params = useParams();
-
-  const handleSubmit = async () => {
-    // const formdata = new FormData();
-    // formdata.append("title", title);
-    // // console.log(title);
-    // formdata.append("date", date);
-    // formdata.append("rentalshop", rentalshop);
-    // formdata.append("time", time);
-    // formdata.append("count", count);
-    // formdata.append("content", content);
-
-    const data = {
+    const data= {
       title,
       date,
       rentalshop,
@@ -72,14 +30,12 @@ function Gathering() {
       content,
     };
 
-    // await API.post("/주소", data);
+    const res = await API.post("/gathering", data);
+
+    console.log(res);
   };
 
-  useEffect(() => {
-    console.log();
-  }, []);
-
->>>>>>> b5e2c1f6ab4112602f4d5228e1c76fb1a8716487
+ 
   return (
     <>
       <GatheringWrapper>
@@ -97,18 +53,13 @@ function Gathering() {
           </InputWrapper>
           <InputWrapper>
             <label>날짜</label>
-<<<<<<< HEAD
             <br/>
             <input 
               type="datetime-local"
-=======
-            <input
-              type="date"
->>>>>>> b5e2c1f6ab4112602f4d5228e1c76fb1a8716487
               required
               value={date}
               onChange={(e) => setDate(e.target.value)}
-            ></input>
+            ></input> 
           </InputWrapper>
           <InputWrapper>
             <label>대여소</label>
@@ -119,7 +70,7 @@ function Gathering() {
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
               placeholder="대여소를 입력하세요"
-              readOnly
+              // readOnly
             />
           </InputWrapper>
           <InputWrapper>
@@ -153,19 +104,19 @@ function Gathering() {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="내용을 입력하세요"
-              style={{ height: "110px", width: "220px" }}
+              style={{ height: '110px', width: '220px' }}
             />
           </InputWrapper>
           <br/>
           <ButtonWrapper>
-            <Button variant="primary" onClick={() => handleSubmit()}>
+            <Button variant="primary" onClick={()=> handleSubmit()}> 
               등록
             </Button>
           </ButtonWrapper>
-        </GatheringForm>
+        </GatheringForm>   
       </GatheringWrapper>
     </>
   );
-}
+};
 
 export default Gathering;
