@@ -3,7 +3,7 @@ import axios from "axios";
 // const baseUrl = "/api";
 
 const api = axios.create({
-  baseURL: "/",
+  baseURL: "http://kdt-ai6-team10.elicecoding.com:3003",
 });
 
 //endpoint : baseUrl 뒤에 오는 path
