@@ -8,9 +8,19 @@ import {
 import {
   MapWrapper,
   LocationInfoWrapper,
+  LocationDataWrapper,
+  GotoGatheringButton,
   MapContainer,
   AlertZoomInfo,
+  AlertMarkerInfo,
 } from "./map-styled";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faLocationDot,
+  faSquareParking,
+  faBicycle,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Map = ({ bikeData }) => {
   const [locationData, setLocationData] = useState(null);
@@ -29,6 +39,8 @@ const Map = ({ bikeData }) => {
 
   /** 지도 state */
   const [map, setMap] = useState(null);
+
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   console.log("data", locationData);
@@ -69,44 +81,29 @@ const Map = ({ bikeData }) => {
     setZoom(map?.zoom);
   };
 
+  /** 모임 생성 페이지로  */
+
+  const goToGathering = () => {
+    const stationInfo = locationData?.stationName?.split(".");
+    navigate("/gathering", {
+      state: {
+        id: stationInfo[0].trim(),
+        name: stationInfo[1].trim(),
+      },
+    });
+    console.log("대여소 정보", stationInfo);
+  };
+
   return (
     <MapWrapper>
-      <LocationInfoWrapper>
+      <MapContainer>
         {zoom <= 13 && (
           <AlertZoomInfo>대여소 위치 정보를 확인하려면 지도 확대</AlertZoomInfo>
         )}
-
-        <h1>대여소 정보</h1>
-        {locationData ? (
-          <>
-            <p>대여소 이름 : {locationData?.stationName}</p>
-            <p>거치대개수 : {locationData?.rackTotCnt}</p>
-            <p>자전거주차총건수 : {locationData?.parkingBikeTotCnt}</p>
-
-            <p>
-              거치대 개수는 대여소별 자전거를 거치할수 있는 거치대의 수를
-              말하며, <br />
-              자전거 주차 총건수는 거치대에 거치된 자전거 수량 및 거치대에
-              거치되지
-              <br />
-              않았지만 대여소에 주차된 자전거 수량의 합을 말합니다. 거치대의
-              수와
-              <br />
-              상관없이 자전거 주차가 가능하여 건수 차이가 날 수 있습니다.
-            </p>
-          </>
-        ) : (
-          <>
-            <p>마커를 클릭하면 대여소 정보를 볼 수 있습니다.</p>
-          </>
-        )}
-      </LocationInfoWrapper>
-      <MapContainer>
         <MapDiv
           style={{
             width: "100%",
             height: "100%",
-            outline: "none",
           }}
         >
           <NaverMap
@@ -118,7 +115,6 @@ const Map = ({ bikeData }) => {
               )
             }
             onZoomChanged={zoomListener}
-            // minZoom={12}
             defaultZoom={15}
             onBoundsChanged={(bounds) => {
               setMaxLongitude(bounds._max._lng);
@@ -127,25 +123,66 @@ const Map = ({ bikeData }) => {
               setMinLatitude(bounds._min._lat);
             }}
           >
-            {zoom > 13 &&
-              filteredBikeData &&
-              filteredBikeData?.map((item) => {
-                return (
-                  <Marker
-                    onClick={() => setLocationData(item)}
-                    key={item.stationId}
-                    position={
-                      new navermaps.LatLng(
-                        item.stationLatitude,
-                        item.stationLongitude
-                      )
-                    }
-                  />
-                );
-              })}
+            <>
+              {zoom > 13 &&
+                filteredBikeData &&
+                filteredBikeData?.map((item) => {
+                  return (
+                    <Marker
+                      onClick={() => setLocationData(item)}
+                      key={item.stationId}
+                      position={
+                        new navermaps.LatLng(
+                          item.stationLatitude,
+                          item.stationLongitude
+                        )
+                      }
+                    />
+                  );
+                })}
+            </>
           </NaverMap>
         </MapDiv>
       </MapContainer>
+      <LocationInfoWrapper>
+        {locationData ? (
+          <LocationDataWrapper>
+            <div>
+              <p>대여소 이름</p>
+              <p>
+                <FontAwesomeIcon icon={faLocationDot} />
+                <span>{locationData?.stationName?.split(".")[1].trim()}</span>
+              </p>
+            </div>
+            <div>
+              <p>거치대개수</p>
+              <p>
+                <FontAwesomeIcon icon={faSquareParking} />
+                <span>{locationData?.rackTotCnt}개</span>
+              </p>
+            </div>
+            <div>
+              <p>자전거주차총건수</p>
+              <p>
+                <FontAwesomeIcon icon={faBicycle} />
+                <span>{locationData?.parkingBikeTotCnt}개</span>
+              </p>
+            </div>
+
+            <GotoGatheringButton>
+              <span onClick={goToGathering}>모임 만들기</span>
+            </GotoGatheringButton>
+          </LocationDataWrapper>
+        ) : (
+          <AlertMarkerInfo>
+            <p>
+              <FontAwesomeIcon icon={faLocationDot} />
+            </p>
+            <p>마커를 클릭해서</p>
+            <p>대여소 정보를 확인해보세요!</p>
+          </AlertMarkerInfo>
+        )}
+      </LocationInfoWrapper>
     </MapWrapper>
   );
 };
