@@ -27,16 +27,16 @@ const Map = ({ bikeData }) => {
   // instead of window.naver.maps
   const navermaps = useNavermaps();
 
-  /** 지도 이동 시 위도, 경도 값 얻기 위한 state */
+  /** 지도 state */
   const [map, setMap] = useState(null);
 
-  useEffect(() => {
-    console.log("data", locationData);
-  }, [locationData]);
+  // useEffect(() => {
+  //   console.log("data", locationData);
+  // }, [locationData]);
 
-  useEffect(() => {
-    console.log("bike data", bikeData);
-  }, [bikeData]);
+  // useEffect(() => {
+  //   console.log("bike data", bikeData);
+  // }, [bikeData]);
 
   useEffect(() => {
     if (!map) return;
@@ -63,7 +63,7 @@ const Map = ({ bikeData }) => {
     });
   }, [bikeData, maxLongitude, minLongitude, maxLatitude, minLatitude]);
 
-  /** 줌 바꼈을 때 실행 */
+  /** 줌 바꼈을 때 실행되는 함수 */
   const zoomListener = () => {
     console.log("changed", map.zoom);
     setZoom(map?.zoom);
@@ -76,9 +76,9 @@ const Map = ({ bikeData }) => {
           <AlertZoomInfo>대여소 위치 정보를 확인하려면 지도 확대</AlertZoomInfo>
         )}
 
-        {locationData && (
+        <h1>대여소 정보</h1>
+        {locationData ? (
           <>
-            <h1>대여소 정보</h1>
             <p>대여소 이름 : {locationData?.stationName}</p>
             <p>거치대개수 : {locationData?.rackTotCnt}</p>
             <p>자전거주차총건수 : {locationData?.parkingBikeTotCnt}</p>
@@ -95,6 +95,10 @@ const Map = ({ bikeData }) => {
               상관없이 자전거 주차가 가능하여 건수 차이가 날 수 있습니다.
             </p>
           </>
+        ) : (
+          <>
+            <p>마커를 클릭하면 대여소 정보를 볼 수 있습니다.</p>
+          </>
         )}
       </LocationInfoWrapper>
       <MapContainer>
@@ -102,6 +106,7 @@ const Map = ({ bikeData }) => {
           style={{
             width: "100%",
             height: "100%",
+            outline: "none",
           }}
         >
           <NaverMap
