@@ -17,7 +17,7 @@ export const GatheringlistWrapper = styled.div`
 export const GatheringItemContainer = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50%, auto));
+  /* grid-template-columns: repeat(auto-fill, minmax(50%, auto)); */
   /* column-gap: 20px; */
 `;
 
