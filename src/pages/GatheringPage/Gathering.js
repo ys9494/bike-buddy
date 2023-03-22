@@ -8,7 +8,7 @@ import {
 import {
   Button,
 } from 'react-bootstrap';
-
+import * as API from "../../commons/api";
 
 function Gathering () {
   const [title, setTitle] = useState();
@@ -18,25 +18,31 @@ function Gathering () {
   const [count,setCount ] = useState();
   const [content, setContent] = useState();
 
- 
 
-  const handleSubmit = () => {
-    const formdata = new FormData();
-      formdata.append('title', title);
-       // console.log(title);
-      formdata.append('date', date);
-      formdata.append('rentalshop', rentalshop);
-      formdata.append('time', time);
-      formdata.append('count', count);
-      formdata.append('content', content);
+  const handleSubmit = async() => {
+
+    const data= {
+      title,
+      date,
+      rentalshop,
+      time,
+      count,
+      content,
+    };
+
+    const res = await API.post("/gathering", data);
+
+    console.log(res);
   };
 
+ 
   return (
     <>
       <GatheringWrapper>
         <GatheringForm>
           <InputWrapper>
             <label>제목</label>
+            <br/>
             <input
               type="title"
               required
@@ -47,8 +53,9 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>날짜</label>
+            <br/>
             <input 
-              type="date"
+              type="datetime-local"
               required
               value={date}
               onChange={(e) => setDate(e.target.value)}
@@ -56,18 +63,21 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>대여소</label>
+            <br/>
             <input
               type="rentalshop"
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
               placeholder="대여소를 입력하세요"
+              // readOnly
             />
           </InputWrapper>
           <InputWrapper>
             <label>소요시간</label>
+            <br/>
             <input
-              type="time"
+              type="number"
               required
               value={time}
               onChange={(e) => setTime(e.target.value)}
@@ -76,6 +86,7 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>인원</label>
+            <br/>
             <input
               type="number"
               required
@@ -86,6 +97,7 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>내용</label>
+            <br/>
             <input
               type="content"
               required
@@ -95,6 +107,7 @@ function Gathering () {
               style={{ height: '110px', width: '220px' }}
             />
           </InputWrapper>
+          <br/>
           <ButtonWrapper>
             <Button variant="primary" onClick={()=> handleSubmit()}> 
               등록

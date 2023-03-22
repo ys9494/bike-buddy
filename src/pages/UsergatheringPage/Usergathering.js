@@ -6,7 +6,6 @@ import { UsergatheringWrapper,
 import React,{useState} from 'react';
 import {
   Button,
-  Form,
 } from 'react-bootstrap';
 
 const Usergathering = () => {
@@ -20,13 +19,15 @@ const Usergathering = () => {
     // useEffect(()=> {
     // },[]);
     
-  
-    const handleModify = (event) => {
-      event.preventDefault();
-      
+    // 수정
+    const handleModify = (e) => {
+      e.preventDefault();
+      alert('수정되었습니다.')
     };
-    const handleDelete = (event) => {
-      event.preventDefault();
+    // 삭제
+    const handleDelete = (e) => {
+      e.preventDefault();
+      
     };
 
   
@@ -36,49 +37,56 @@ const Usergathering = () => {
           <UsergatheringForm>
             <InputWrapper>
               <label>제목</label>
+              <br/>
               <input
                 type = "title"
                 placeholder = {title} />
             </InputWrapper>
             <InputWrapper>
               <label>날짜</label>
+              <br/>
               <input
-                type = "date"
+                type = "datetime-local"
                 placeholder = {date} />
             </InputWrapper>
             <InputWrapper>
               <label>대여소</label>
+              <br/>
               <input
                 type = "rentalshop"
                 placeholder = {rentalshop} />
             </InputWrapper>
             <InputWrapper>
               <label>소요시간</label>
+              <br/>
               <input
-                type = "time"
+                type = "number"
                 placeholder = {time} />
             </InputWrapper>
             <InputWrapper>
               <label>인원</label>
+              <br/>
               <input
                 type = "number"
                 placeholder = {count} />
             </InputWrapper>
             <InputWrapper>
               <label>내용</label>
+              <br/>
               <input
                 type = "content"
                 placeholder = {content}
-                style={{ height: '110px', width: '220px' }} />
+                style={{ height: '110px', width: '220px' }} />              
             </InputWrapper>
-          <ButtonWrapper>
-            <Button variant="primary" onClick={()=> handleModify()}> 
-              수정
-            </Button>
-            <Button variant="primary" onClick={()=> handleDelete()}>
-              삭제
-            </Button>
-          </ButtonWrapper>
+            <br/>
+            <ButtonWrapper>
+              <Button variant="primary" onClick={handleModify}> 
+                수정
+              </Button>
+              <Button variant="primary" onClick={handleDelete}>
+                삭제
+              </Button>
+            </ButtonWrapper>
           </UsergatheringForm>
         </UsergatheringWrapper>      
       </>
