@@ -1,61 +1,34 @@
-import React from 'react';
-import { Container, Row, Form } from 'react-bootstrap';
-import { GatheringlistWrapper } from "./gatheringlist-styled";
-// import Gethering from '../GetheringPage/Gethering';
+import React from "react";
+import { useGatheringList } from "../../hooks/gathering.hook";
+import GatheringItem from "./GatheringItem";
+import {
+  GatheringlistWrapper,
+  GatheringItemContainer,
+} from "./gatheringlist-styled";
 
-function Gatheringlist () {
-  // const [gethering, setGethering] = useState([]);
+function Gatheringlist() {
+  const { gatheringList, isLoading } = useGatheringList();
+
+  console.log("gatheringList : ", gatheringList);
 
   return (
-    <>
-      <GatheringlistWrapper>
-        <h1 className="container px-4 px-lg-5 my-5"></h1>
-        <section className="py-1">
-          <div className="container px-4 px-lg-5 my-1">
-            <div className="row">
-              <div className="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
-                <div className="table-responsive">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col" className="border-0 bg-light">
-                          <div className="p-2 px-3 text-uppercase">
-                            <Form>
-                              <Form.Label htmlFor="GatheringList">
-                                모임 리스트
-                              </Form.Label>
-                            </Form>
-                            <p>제목</p>
-                          </div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <Container>
-                        <Row
-                          xs={2}
-                          className="justify-content-md-center align-top align-left"
-                        >
-                          {/* {title.map(() => {
-                            return (
-                              <Gethering
-                                // key={gethering._title}
-                                // gethering={gethering}
-                              />
-                            );
-                          })} */}
-                        </Row>
-                      </Container>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </GatheringlistWrapper>
-    </>
+    <GatheringlistWrapper>
+      <h1>모임 리스트</h1>
+      <div>
+        {isLoading ? (
+          <>로딩중..</>
+        ) : (
+          <GatheringItemContainer>
+            {gatheringList.map((gatheringItem) => {
+              return (
+                <GatheringItem key={gatheringItem.id} {...gatheringItem} />
+              );
+            })}
+          </GatheringItemContainer>
+        )}
+      </div>
+    </GatheringlistWrapper>
   );
-};
+}
 
 export default Gatheringlist;

@@ -27,16 +27,16 @@ const Map = ({ bikeData }) => {
   // instead of window.naver.maps
   const navermaps = useNavermaps();
 
-  /** 지도 이동 시 위도, 경도 값 얻기 위한 state */
+  /** 지도 state */
   const [map, setMap] = useState(null);
 
-  useEffect(() => {
-    console.log("data", locationData);
-  }, [locationData]);
+  // useEffect(() => {
+  //   console.log("data", locationData);
+  // }, [locationData]);
 
-  useEffect(() => {
-    console.log("bike data", bikeData);
-  }, [bikeData]);
+  // useEffect(() => {
+  //   console.log("bike data", bikeData);
+  // }, [bikeData]);
 
   useEffect(() => {
     if (!map) return;
@@ -63,7 +63,7 @@ const Map = ({ bikeData }) => {
     });
   }, [bikeData, maxLongitude, minLongitude, maxLatitude, minLatitude]);
 
-  /** 줌 바꼈을 때 실행 */
+  /** 줌 바꼈을 때 실행되는 함수 */
   const zoomListener = () => {
     console.log("changed", map.zoom);
     setZoom(map?.zoom);
