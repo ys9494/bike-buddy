@@ -4,8 +4,9 @@ export const GatheringlistWrapper = styled.div`
   max-width: 1200px;
   margin: 20px auto 0;
   background-color: beige;
+
   border-radius: 30px;
-  padding: 20px 0;
+  padding: 20px;
   h1 {
     font-size: 20px;
     font-weight: bold;
@@ -22,19 +23,58 @@ export const GatheringItemContainer = styled.div`
 `;
 
 export const GatheringItemWrapper = styled.div`
-  height: 280px;
+  height: 340px;
   margin: 20px auto;
-  padding: 20px;
-  div {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 30px;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 30px;
+
+  p {
+    margin: 10px 0;
+    &:first-of-type {
+      font-weight: bold;
+      color: green;
+    }
+    span {
+      margin-left: 5px;
+    }
   }
 `;
 
-export const ApplyButtonWrapper = styled.div``;
+export const GatheringDetail = styled.div``;
 
-export const EditButtonWrapper = styled.div``;
+export const ApplyButtonWrapper = styled.div`
+  button {
+    width: 100%;
+    height: 32px;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    background-color: green;
+    cursor: pointer;
+  }
+  &:hover {
+    opacity: 0.8;
+    transition: all 0.3s;
+  }
+`;
+
+export const EditButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  button {
+    width: 45%;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+      transition: all 0.3s;
+    }
+  }
+`;
