@@ -33,7 +33,7 @@ function Gathering() {
       content,
     };
 
-    const res = await API.post("/gathering", data);
+    const res = await API.post("/gatherings", data);
 
     console.log("모임 등록", res);
   };
@@ -83,7 +83,6 @@ function Gathering() {
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
-              placeholder="대여소를 입력하세요"
               readOnly
             />
           </InputWrapper>
@@ -113,8 +112,7 @@ function Gathering() {
           <InputWrapper>
             <label>내용</label>
             <br />
-            <input
-              type="content"
+            <textarea
               required
               value={content}
               onChange={(e) => setContent(e.target.value)}
