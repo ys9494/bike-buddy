@@ -3,6 +3,11 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.div`
   width: 100%;
   height: 100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99;
+  background-color: #fff;
 `;
 
 export const AlignCenter = styled.div`
