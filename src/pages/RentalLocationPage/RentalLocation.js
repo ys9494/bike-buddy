@@ -33,7 +33,7 @@ const RentalLocation = () => {
 
   return (
     <RentalLocationWrapper>
-      <h1>대여소 정보 페이지</h1>
+      <h1>대여소 정보</h1>
       <Map bikeData={bikeData} />
     </RentalLocationWrapper>
   );
