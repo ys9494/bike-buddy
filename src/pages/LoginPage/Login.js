@@ -52,9 +52,9 @@ const Login = () => {
       password,
     };
 
-    const result = await API.post("/signin", loginData);
+    const result = await API.post("/users/sign-in", loginData);
 
-    console.log("Login result", result);
+    console.log("Login result", result.data.data);
   };
 
   return (
