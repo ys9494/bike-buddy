@@ -6,7 +6,20 @@ import { Suspense } from "react";
 
 function App() {
   return (
-    <Suspense fallback={<div>로딩중...</div>}>
+    <Suspense
+      fallback={
+        <div
+          style={{
+            position: "fixed",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          Loading...
+        </div>
+      }
+    >
       <NavermapsProvider
         ncpClientId={process.env.REACT_APP_MAP_API_KEY}
         submodules={["panorama"]}
