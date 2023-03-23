@@ -3,9 +3,8 @@ import * as API from "../commons/api";
 
 export const fetchMyGatheringList = async () => {
   try {
-    const response = await API.get("/api/my/gatherings");
-
-    return response;
+    // const response = await API.get("/api/my/gatherings");
+    // return response;
   } catch (error) {
     console.error(error);
   }
@@ -18,7 +17,7 @@ const DUMMY_GATHERING_LIST = [
     date: "2023-02-01",
     rental: "역삼역 1번출구 앞",
     count: 10,
-    content: "모임1 설명설명설명",
+    content: "설명설명설명",
   },
   {
     id: 2,
@@ -26,7 +25,7 @@ const DUMMY_GATHERING_LIST = [
     date: "2023-02-01",
     rental: "역삼역 1번출구 앞",
     count: 10,
-    content: "모임1 설명설명설명",
+    content: "설명설명설명",
   },
   {
     id: 3,
@@ -42,7 +41,7 @@ const DUMMY_GATHERING_LIST = [
     date: "2023-02-01",
     rental: "역삼역 1번출구 앞",
     count: 10,
-    content: "모임1 설명설명설명",
+    content: "설명설명설명",
   },
   {
     id: 5,
@@ -50,13 +49,13 @@ const DUMMY_GATHERING_LIST = [
     date: "2023-02-01",
     rental: "역삼역 1번출구 앞",
     count: 10,
-    content: "모임1 설명설명설명",
+    content: "설명설명설명",
   },
 ];
 
 export const fetchGatheringList = async () => {
   // const response = await api.get("/api/gatherings");
+  // return response
 
   return Promise.resolve({ data: DUMMY_GATHERING_LIST });
-  // return response
 };
