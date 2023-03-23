@@ -8,7 +8,7 @@ import {
   Button,
 } from "./signup-styled";
 import { Link, useNavigate } from "react-router-dom";
-import { useUserDispatch } from "../../context/UserContext";
+// import { useUserDispatch } from "../../context/UserContext";
 import * as API from "../../commons/api";
 import { ROUTE } from "../../routes/route";
 
@@ -27,7 +27,8 @@ const Signup = () => {
   const pwRef = useRef();
 
   const navigate = useNavigate();
-  const dispatch = useUserDispatch();
+
+  // const dispatch = useUserDispatch();
 
   /** 유효성체크 메세지 */
   const InvalidMessages = {
@@ -75,10 +76,10 @@ const Signup = () => {
       });
       navigate(ROUTE.HOME.link);
       localStorage.setItem("token", data.token);
-      dispatch({
-        type: "LOGIN",
-        // isAdmin: data.isAdmin,
-      });
+      // dispatch({
+      //   type: "LOGIN",
+      //   // isAdmin: data.isAdmin,
+      // });
     } catch (err) {
       console.log("Error", err.response.data);
       alert("이미 사용중인 이메일입니다.");

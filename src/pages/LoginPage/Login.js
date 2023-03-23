@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from "react";
 import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
 import { useNavigate } from "react-router-dom";
-import { useUserDispatch } from "../../context/UserContext";
+// import { useUserDispatch } from "../../context/UserContext";
 import * as API from "../../commons/api";
 
 const Login = () => {
@@ -11,7 +11,7 @@ const Login = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
 
-  const dispatch = useUserDispatch();
+  // const dispatch = useUserDispatch();
 
   /** 로그인 API */
   const loginAPI = async (userData) => {
@@ -20,10 +20,10 @@ const Login = () => {
       console.log("login", data.isAdmin);
       localStorage.setItem("");
 
-      dispatch({
-        type: "LOGIN",
-        isUser: data.isUser,
-      });
+      // dispatch({
+      //   type: "LOGIN",
+      //   isUser: data.isUser,
+      // });
 
       navigate("/");
     } catch (err) {

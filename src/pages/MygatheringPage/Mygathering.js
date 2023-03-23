@@ -34,19 +34,18 @@ const Mygathering = () => {
         <Mygatheringform>
           <label>참가신청한 모임</label>
           <br />
-          <div>제목</div>
-          <div>시간</div>
-          <div>날짜</div>
-          <div>대여소명</div>
-          <button>참가취소</button>
 
           {appliedGatheringList.map((item, index) => {
             return (
               <MygatheringItems key={item.id} className="key">
-                <div>{item.title}</div>
-                <div>{item.date}</div>
-                <div>{item.rentalshop}</div>
-                <div>{item.time}</div>
+                <span>제목</span>
+                <span>{item.title}</span>
+                <span>날짜</span>
+                <span>{item.date}</span>
+                <span>시간</span>
+                <span>{item.time}</span>
+                <span>대여소명</span>
+                <span>{item.rentalshop}</span>
               </MygatheringItems>
             );
           })}
@@ -55,18 +54,18 @@ const Mygathering = () => {
         <Mygatheringform>
           <label>내가 만든 모임</label>
           <br />
-          <div>제목</div>
-          <div>시간</div>
-          <div>날짜</div>
-          <div>대여소명</div>
-          <button>참가취소</button>
+
           {ownGatheringList.map((item, index) => {
             return (
               <MygatheringItems key={item.id} className="key">
-                <div>{item.title}</div>
-                <div>{item.date}</div>
-                <div>{item.rentalshop}</div>
-                <div>{item.time}</div>
+                <span>제목</span>
+                <span>{item.title}</span>
+                <span>날짜</span>
+                <span>{item.date}</span>
+                <span>시간</span>
+                <span>{item.time}</span>
+                <span>대여소명</span>
+                <span>{item.rentalshop}</span>
               </MygatheringItems>
             );
           })}
