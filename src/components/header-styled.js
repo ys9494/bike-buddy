@@ -18,10 +18,12 @@ export const LogoContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-
-  font-size: 20px;
-  font-weight: bold;
-  color: green;
+  cursor: pointer;
+  a {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: green;
+  }
 `;
 
 export const NavContainer = styled.div`

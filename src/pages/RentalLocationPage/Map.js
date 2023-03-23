@@ -22,6 +22,8 @@ import {
   faBicycle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { faFaceSmileWink } from "@fortawesome/free-regular-svg-icons";
+
 const Map = ({ bikeData }) => {
   const [locationData, setLocationData] = useState(null);
 
@@ -41,14 +43,6 @@ const Map = ({ bikeData }) => {
   const [map, setMap] = useState(null);
 
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   console.log("data", locationData);
-  // }, [locationData]);
-
-  // useEffect(() => {
-  //   console.log("bike data", bikeData);
-  // }, [bikeData]);
 
   useEffect(() => {
     if (!map) return;
@@ -179,7 +173,11 @@ const Map = ({ bikeData }) => {
               <FontAwesomeIcon icon={faLocationDot} />
             </p>
             <p>마커를 클릭해서</p>
-            <p>대여소 정보를 확인해보세요!</p>
+            <p>대여소 정보를 확인하고</p>
+            <p>모임을 만들어보세요</p>
+            <p>
+              <FontAwesomeIcon icon={faFaceSmileWink} />
+            </p>
           </AlertMarkerInfo>
         )}
       </LocationInfoWrapper>

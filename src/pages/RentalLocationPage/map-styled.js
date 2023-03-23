@@ -73,18 +73,22 @@ export const MapContainer = styled.div`
 export const AlertZoomInfo = styled.div`
   width: 200px;
   height: 100px;
-  background-color: beige;
+  background-color: #fff;
+  border-radius: 30px;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AlertMarkerInfo = styled.div`
-  padding-top: 120px;
+  padding-top: 110px;
   p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: green;
     text-align: center;
