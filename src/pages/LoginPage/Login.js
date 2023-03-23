@@ -1,24 +1,54 @@
-import React, {
-  useRef,
-  useState,
-  // , useNavigate
-} from "react";
-// import { useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// import { useUserDispatch } from "../../context/UserContext";
+import * as API from "../../commons/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const passwordRef = useRef();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  // const dispatch = useUserDispatch();
+
+  /** 로그인 API */
+  const loginAPI = async (userData) => {
+    try {
+      const { data } = await API.post("../common/api", userData);
+      console.log("login", data.isAdmin);
+      localStorage.setItem("");
+
+      // dispatch({
+      //   type: "LOGIN",
+      //   isUser: data.isUser,
+      // });
+
+      navigate("/");
+    } catch (err) {
+      console.log("Error", err?.response?.data);
+      navigate("/login");
+      alert("이메일 또는 비밀번호를 확인해주세요");
+    }
+  };
+
+  /** 로그인 제출 */
+  const loginSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      loginAPI({ email, password });
+      setEmail("");
+      setPassword("");
+    },
+    [email, password]
+  );
 
   return (
     <>
       <LoginWrapper>
         <h1>로그인</h1>
-        <LoginForm>
+        <LoginForm onSubmit={loginSubmit}>
           <InputWrapper>
             <label>이메일</label>
             <br />
@@ -47,7 +77,6 @@ const Login = () => {
               alert("로그인되었습니다.");
             }}
           >
-            <Link to="../main" style={{ textDecoration: "none" }}></Link>
             로그인
           </button>
         </LoginForm>
