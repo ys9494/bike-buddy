@@ -2,10 +2,9 @@ import styled from "styled-components";
 
 export const UsergatheringWrapper = styled.div`
   display: flex;
-  margin: 20px 400px;
+  margin: 20px 350px;
   background-color: beige;
-  padding:80px;
-  align-items: left;
+  padding: 80px;
   border-radius: 30px;
   font-size: 20px;
   font-weight: bold;
@@ -17,12 +16,16 @@ export const UsergatheringForm = styled.div`
   `;
   
 export const InputWrapper = styled.div`
-
   font-size: 20px;
   color: green;
   margin: 10px 0px;
-  label{
-    margin-right:10px;
+  font-size: 20px;
+  color: green;
+  margin: 10px 0px;
+  input{
+    margin: 3px 0px;
+    border: 5px solid white;
+    border-radius: 10px;
   }
   `;
     
@@ -32,10 +35,8 @@ export const ButtonWrapper = styled.div`
     font-size: 18px;
     color: green;
     margin-right:20px;
+    background-color: #ffffff;
+    border: 2px solid green;
     border-radius: 10px;
-    border-color: green;
-    border-right-color: #ffffff;
-    border-bottom-color:white;
-    border-width: 2px;
   }
 `;

@@ -1,42 +1,62 @@
-import React,{ useState } from 'react';
-import { 
-  GatheringWrapper, 
+import React, { useEffect, useState } from "react";
+import {
+  GatheringWrapper,
   InputWrapper,
   GatheringForm,
   ButtonWrapper,
 } from "./gathering-styled";
-import {
-  Button,
-} from 'react-bootstrap';
+import * as API from "../../commons/api";
+import { useLocation, useNavigate } from "react-router-dom";
 
+function Gathering() {
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [rentalshop, setRentalShop] = useState("");
+  const [rentalId, setRentalId] = useState("");
+  const [time, setTime] = useState(0);
+  const [count, setCount] = useState(0);
+  const [content, setContent] = useState("");
 
-function Gathering () {
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [rentalshop, setRentalShop] = useState();
-  const [time, setTime] = useState();
-  const [count,setCount ] = useState();
-  const [content, setContent] = useState();
+  const navigate = useNavigate();
+  const location = useLocation();
 
- 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = () => {
-    const formdata = new FormData();
-      formdata.append('title', title);
-       // console.log(title);
-      formdata.append('date', date);
-      formdata.append('rentalshop', rentalshop);
-      formdata.append('time', time);
-      formdata.append('count', count);
-      formdata.append('content', content);
+    const data = {
+      title,
+      date,
+      rentalId,
+      rentalshop,
+      time,
+      count,
+      content,
+    };
+
+    const res = await API.post("/gathering", data);
+
+    console.log("모임 등록", res);
   };
+
+  useEffect(() => {
+    if (location?.state) {
+      const { id, name } = location?.state;
+      setRentalId(id);
+      setRentalShop(name);
+      console.log("id", id);
+      console.log("name", name);
+    } else {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <>
       <GatheringWrapper>
-        <GatheringForm>
+        <GatheringForm onSubmit={handleSubmit}>
           <InputWrapper>
             <label>제목</label>
+            <br />
             <input
               type="title"
               required
@@ -47,35 +67,41 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>날짜</label>
-            <input 
-              type="date"
+            <br />
+            <input
+              type="datetime-local"
               required
               value={date}
               onChange={(e) => setDate(e.target.value)}
-            ></input> 
+            ></input>
           </InputWrapper>
           <InputWrapper>
             <label>대여소</label>
+            <br />
             <input
               type="rentalshop"
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
               placeholder="대여소를 입력하세요"
+              readOnly
             />
           </InputWrapper>
           <InputWrapper>
             <label>소요시간</label>
+            <br />
             <input
-              type="time"
+              type="number"
               required
               value={time}
+              step="5"
               onChange={(e) => setTime(e.target.value)}
               placeholder="소요시간을 입력하세요"
             />
           </InputWrapper>
           <InputWrapper>
             <label>인원</label>
+            <br />
             <input
               type="number"
               required
@@ -86,24 +112,24 @@ function Gathering () {
           </InputWrapper>
           <InputWrapper>
             <label>내용</label>
+            <br />
             <input
               type="content"
               required
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="내용을 입력하세요"
-              style={{ height: '110px', width: '220px' }}
+              style={{ height: "110px", width: "320px" }}
             />
           </InputWrapper>
+          <br />
           <ButtonWrapper>
-            <Button variant="primary" onClick={()=> handleSubmit()}> 
-              등록
-            </Button>
+            <button>등록</button>
           </ButtonWrapper>
-        </GatheringForm>   
+        </GatheringForm>
       </GatheringWrapper>
     </>
   );
-};
+}
 
 export default Gathering;
