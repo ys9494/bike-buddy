@@ -12,7 +12,6 @@ function Gathering() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [rentalshop, setRentalShop] = useState("");
-  const [rentalId, setRentalId] = useState("");
   const [time, setTime] = useState(0);
   const [count, setCount] = useState(0);
   const [content, setContent] = useState("");
@@ -23,29 +22,27 @@ function Gathering() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
+    const gatheringData = {
       title,
-      date,
-      rentalId,
-      rentalshop,
-      time,
-      count,
-      content,
+      start_time: date,
+      rent_name: rentalshop,
+      duration: time,
+      total_members: count,
+      desc: content,
     };
 
-    const res = await API.post("/gathering", data);
+    const res = await API.post("/gathering", gatheringData);
 
     console.log("모임 등록", res);
   };
 
   useEffect(() => {
     if (location?.state) {
-      const { id, name } = location?.state;
-      setRentalId(id);
+      const { name } = location?.state;
       setRentalShop(name);
-      console.log("id", id);
       console.log("name", name);
     } else {
+      alert("대여소를 선택 후 모임을 만들 수 있습니다.");
       navigate("/");
     }
   }, []);
@@ -116,6 +113,7 @@ function Gathering() {
             <input
               type="content"
               required
+              maxLength="20"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="내용을 입력하세요"

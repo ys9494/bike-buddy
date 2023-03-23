@@ -1,15 +1,21 @@
 import { MainWrapper, ChartWrapper } from "./main-styled";
 import YearChart from "./YearChart";
 import HourChart from "./HourChart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // import Chart from "chart.js/auto";
 
 import * as API from "../../commons/api";
 
 const Main = () => {
+  const [hourChart, setHourChart] = useState([]);
+  const [yearChart, setYearChart] = useState([]);
+
   const getAPI = async () => {
-    const result = await API.get("/charts/1");
-    console.log("res", result);
+    const yearResult = await API.get("/charts/1");
+    const hourResult = await API.get("/charts/2");
+
+    console.log("hour", hourResult);
+    console.log("year", yearResult);
   };
 
   useEffect(() => {

@@ -38,6 +38,11 @@ export const ROUTE = {
     link: "/usergathering",
     element: Usergathering,
   },
+  USER_GATHERING_EDIT: {
+    path: "/usergathering/:id/edit",
+    link: "/usergathering/:id/edit",
+    element: Usergathering,
+  },
   GATHERING_LIST: {
     path: "/gatheringlist",
     link: "/gatheringlist",

@@ -20,6 +20,7 @@ import {
   faLocationDot,
   faSquareParking,
   faBicycle,
+  faMagnifyingGlassPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { faFaceSmileWink } from "@fortawesome/free-regular-svg-icons";
@@ -92,7 +93,13 @@ const Map = ({ bikeData }) => {
     <MapWrapper>
       <MapContainer>
         {zoom <= 13 && (
-          <AlertZoomInfo>대여소 위치 정보를 확인하려면 지도 확대</AlertZoomInfo>
+          <AlertZoomInfo>
+            <p>
+              <FontAwesomeIcon icon={faMagnifyingGlassPlus} />{" "}
+            </p>
+            <p>대여소 정보를 확인하려면</p>
+            <p>지도를 확대해주세요!</p>
+          </AlertZoomInfo>
         )}
         <MapDiv
           style={{

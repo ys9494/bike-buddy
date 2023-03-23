@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useGatheringList } from "../../hooks/gathering.hook";
 import GatheringItem from "./GatheringItem";
 import {
@@ -8,11 +8,25 @@ import {
 
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import * as API from "../../commons/api";
 
 function Gatheringlist() {
-  const { gatheringList, isLoading } = useGatheringList();
+  // const { gatheringList, isLoading } = useGatheringList();
+  const [gatheringList, setGatheringList] = useState([]);
 
-  console.log("gatheringList : ", gatheringList);
+  // console.log("gatheringList : ", gatheringList);
+
+  const isLoading = false;
+
+  const getGatheringData = async () => {
+    const result = await API.get("/gathering");
+    setGatheringList(result?.data.data);
+    console.log("res", result);
+  };
+
+  useEffect(() => {
+    getGatheringData();
+  }, []);
 
   return (
     <GatheringlistWrapper>
