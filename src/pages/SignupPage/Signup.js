@@ -69,7 +69,7 @@ const Signup = () => {
   const signupAPI = async (userData) => {
     // await post()
     try {
-      const { data } = await API.post("/users/register", {
+      const { data } = await API.post("/users/sign-up", {
         name,
         email,
         password,
@@ -100,75 +100,75 @@ const Signup = () => {
     if (isNameValid && isEmailValid && isPwMatch) {
       signupAPI();
     }
-    return (
-      <SignupWrapper>
-        <h1>SIGN UP</h1>
-        <SignupForm onSubmit={signupSubmit}>
-          <InputWrapper>
-            <label>NAME</label>
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={checkName}
-              ref={nameRef}
-              placeholder="이름을 입력하세요(2 - 6글자)"
-            />
-            {name
-              ? isNameValid || (
-                  <InvalidMessage>{InvalidMessages.name}</InvalidMessage>
-                )
-              : null}
-          </InputWrapper>
-          <InputWrapper>
-            <label>EMAIL</label>
-            <input
-              type="text"
-              required
-              value={email}
-              onChange={checkEmail}
-              ref={emailRef}
-              placeholder="이메일을 입력하세요"
-            />
-            {email
-              ? isEmailValid || (
-                  <InvalidMessage>{InvalidMessages.email}</InvalidMessage>
-                )
-              : null}
-          </InputWrapper>
-          <InputWrapper>
-            <label>PASSWORD</label>
-            <input
-              type="password"
-              required
-              minLength="8"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="비밀번호를 입력하세요(8글자 이상)"
-            />
-          </InputWrapper>
-          <InputWrapper>
-            <label>PASSWORD CONFIRM</label>
-            <input
-              type="password"
-              required
-              minLength="8"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-              ref={pwRef}
-              placeholder="비밀번호를 한 번 더 입력하세요"
-            />
-            {isPwMatch || (
-              <InvalidMessage>{InvalidMessages.password}</InvalidMessage>
-            )}
-          </InputWrapper>
-          <Button>CREATE ACCOUNT</Button>
-          <GotoLogin>
-            <Link to="/login">Already have an account?</Link>
-          </GotoLogin>
-        </SignupForm>
-      </SignupWrapper>
-    );
   };
+  return (
+    <SignupWrapper>
+      <h1>SIGN UP</h1>
+      <SignupForm onSubmit={signupSubmit}>
+        <InputWrapper>
+          <label>NAME</label>
+          <input
+            type="text"
+            required
+            value={name}
+            onChange={checkName}
+            ref={nameRef}
+            placeholder="이름을 입력하세요(2 - 6글자)"
+          />
+          {name
+            ? isNameValid || (
+                <InvalidMessage>{InvalidMessages.name}</InvalidMessage>
+              )
+            : null}
+        </InputWrapper>
+        <InputWrapper>
+          <label>EMAIL</label>
+          <input
+            type="text"
+            required
+            value={email}
+            onChange={checkEmail}
+            ref={emailRef}
+            placeholder="이메일을 입력하세요"
+          />
+          {email
+            ? isEmailValid || (
+                <InvalidMessage>{InvalidMessages.email}</InvalidMessage>
+              )
+            : null}
+        </InputWrapper>
+        <InputWrapper>
+          <label>PASSWORD</label>
+          <input
+            type="password"
+            required
+            minLength="8"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="비밀번호를 입력하세요(8글자 이상)"
+          />
+        </InputWrapper>
+        <InputWrapper>
+          <label>PASSWORD CONFIRM</label>
+          <input
+            type="password"
+            required
+            minLength="8"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            ref={pwRef}
+            placeholder="비밀번호를 한 번 더 입력하세요"
+          />
+          {isPwMatch || (
+            <InvalidMessage>{InvalidMessages.password}</InvalidMessage>
+          )}
+        </InputWrapper>
+        <Button>CREATE ACCOUNT</Button>
+        <GotoLogin>
+          <Link to="/login">Already have an account?</Link>
+        </GotoLogin>
+      </SignupForm>
+    </SignupWrapper>
+  );
 };
 export default Signup;

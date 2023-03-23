@@ -1,8 +1,8 @@
 import React, { useRef, useState, useCallback } from "react";
 import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
-import { useNavigate } from "react-router-dom";
-// import { useUserDispatch } from "../../context/UserContext";
+import { Link, useNavigate } from "react-router-dom";
 import * as API from "../../commons/api";
+import { useUserDispatch } from "../../context/UserContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ const Login = () => {
   const passwordRef = useRef();
   const navigate = useNavigate();
 
-  // const dispatch = useUserDispatch();
+  const dispatch = useUserDispatch();
 
   /** 로그인 API */
   const loginAPI = async (userData) => {
@@ -20,10 +20,10 @@ const Login = () => {
       console.log("login", data.isAdmin);
       localStorage.setItem("");
 
-      // dispatch({
-      //   type: "LOGIN",
-      //   isUser: data.isUser,
-      // });
+      dispatch({
+        type: "LOGIN",
+        isUser: data.isUser,
+      });
 
       navigate("/");
     } catch (err) {
@@ -43,6 +43,19 @@ const Login = () => {
     },
     [email, password]
   );
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const loginData = {
+      email,
+      password,
+    };
+
+    const result = await API.post("/signin", loginData);
+
+    console.log("Login result", result);
+  };
 
   return (
     <>
@@ -72,11 +85,8 @@ const Login = () => {
               placeholder="비밀번호를 입력하세요"
             />
           </InputWrapper>
-          <button
-            onClick={function handleClick() {
-              alert("로그인되었습니다.");
-            }}
-          >
+          <button onClick={handleLogin}>
+            {/* <Link to="../main" style={{ textDecoration: "none" }}></Link> */}
             로그인
           </button>
         </LoginForm>
