@@ -5,7 +5,8 @@ import React, {
 } from "react";
 // import { useCallback } from "react";
 import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import * as API from "../../commons/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,19 @@ const Login = () => {
 
   const passwordRef = useRef();
   // const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const loginData = {
+      email,
+      password,
+    };
+
+    const result = await API.post("/users/sign-in", loginData);
+
+    console.log("Login result", result.data.data);
+  };
 
   return (
     <>
@@ -42,12 +56,8 @@ const Login = () => {
               placeholder="비밀번호를 입력하세요"
             />
           </InputWrapper>
-          <button
-            onClick={function handleClick() {
-              alert("로그인되었습니다.");
-            }}
-          >
-            <Link to="../main" style={{ textDecoration: "none" }}></Link>
+          <button onClick={handleLogin}>
+            {/* <Link to="../main" style={{ textDecoration: "none" }}></Link> */}
             로그인
           </button>
         </LoginForm>

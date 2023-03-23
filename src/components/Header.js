@@ -14,7 +14,7 @@ const Header = () => {
     <HeaderWrapper>
       <AlignCenter>
         <LogoContainer>
-          <div>BikeBuddy</div>
+          <Link to="/">BikeBuddy</Link>
         </LogoContainer>
         <NavContainer>
           <GotoAccount>
