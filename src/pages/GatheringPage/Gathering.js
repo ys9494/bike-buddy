@@ -80,7 +80,6 @@ function Gathering() {
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
-              placeholder="대여소를 입력하세요"
               readOnly
             />
           </InputWrapper>
@@ -110,8 +109,7 @@ function Gathering() {
           <InputWrapper>
             <label>내용</label>
             <br />
-            <input
-              type="content"
+            <textarea
               required
               maxLength="20"
               value={content}

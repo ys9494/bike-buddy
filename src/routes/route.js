@@ -34,8 +34,8 @@ export const ROUTE = {
     element: Gathering,
   },
   USER_GATHERING: {
-    path: "/usergathering",
-    link: "/usergathering",
+    path: "/gathering/:id/edit",
+    link: "/gathering/:id/edit",
     element: Usergathering,
   },
   USER_GATHERING_EDIT: {
