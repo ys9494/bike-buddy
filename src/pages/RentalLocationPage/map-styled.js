@@ -9,6 +9,7 @@ export const MapWrapper = styled.div`
 `;
 
 export const LocationInfoWrapper = styled.div`
+  width: 320px;
   height: 560px;
   margin-left: 20px;
   padding: 40px;

@@ -21,6 +21,7 @@ import Box from "@mui/material/Box";
 import { timeFormat } from "../../commons/utils";
 import { Link, useNavigate } from "react-router-dom";
 import * as API from "../../commons/api";
+import { ROUTE } from "../../routes/route";
 
 const Mygathering = () => {
   const { myGatheringList } = useMyGatheringList();
@@ -52,9 +53,10 @@ const Mygathering = () => {
   /** 참가 취소 */
   const handleCancel = async (id) => {
     if (window.confirm("참가를 취소하시겠습니까?")) {
-      // const result = await API.delete(`/gathering/delete_member/${id}`);
-      // alert("참가 취소되었습니다.");
+      const result = await API.delete(`/member/${id}`);
+      alert("참가 취소되었습니다.");
       // console.log("참가 취소", result);
+      navigate(ROUTE.GATHERING_LIST.link);
     }
   };
 
@@ -64,12 +66,12 @@ const Mygathering = () => {
   };
 
   /** 삭제 */
-
   const handleDelete = async (id) => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       const result = await API.delete(`/gathering/${id}`);
       alert("모임이 삭제되었습니다.");
-      console.log("삭제", result);
+      // console.log("삭제", result);
+      navigate(ROUTE.GATHERING_LIST.link);
     }
   };
 

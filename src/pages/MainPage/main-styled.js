@@ -70,8 +70,6 @@ export const ChartWrapper = styled.div`
 `;
 
 export const DescWrapper = styled.div`
-  width: 40%;
-  height: 30%;
   padding: 40px;
   /* text-align: center; */
   > p {

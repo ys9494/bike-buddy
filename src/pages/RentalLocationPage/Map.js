@@ -79,14 +79,19 @@ const Map = ({ bikeData }) => {
   /** 모임 생성 페이지로  */
 
   const goToGathering = () => {
-    const stationInfo = locationData?.stationName?.split(".");
-    navigate("/gathering", {
-      state: {
-        id: stationInfo[0].trim(),
-        name: stationInfo[1].trim(),
-      },
-    });
-    console.log("대여소 정보", stationInfo);
+    if (!localStorage.getItem("token")) {
+      alert("로그인이 필요한 서비스입니다.");
+      navigate("/login");
+    } else {
+      const stationInfo = locationData?.stationName?.split(".");
+      navigate("/gathering", {
+        state: {
+          id: stationInfo[0].trim(),
+          name: stationInfo[1].trim(),
+        },
+      });
+      console.log("대여소 정보", stationInfo);
+    }
   };
 
   return (

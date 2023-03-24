@@ -1,7 +1,5 @@
 import axios from "axios";
 
-// const baseUrl = "/api";
-
 const api = axios.create({
   baseURL: "http://kdt-ai6-team10.elicecoding.com:3003",
 });
@@ -24,7 +22,7 @@ async function post(endpoint, data) {
   // JSON.stringify 함수 : JS객체를 JSON 형태로 변환
   const bodyData = JSON.stringify(data);
   console.log(`POST 요청 : ${endpoint}`);
-  console.log(`POST 요청 데이터 : ${bodyData}`);
+  // console.log(`POST 요청 데이터 : ${bodyData}`);
 
   return api.post(endpoint, bodyData, {
     headers: {
@@ -39,7 +37,7 @@ async function patch(endpoint, data) {
   // JSON.stringify 함수 : JS객체를 JSON 형태로 변환
   const bodyData = JSON.stringify(data);
   console.log(`PATCH 요청 : ${endpoint}`);
-  console.log(`PATCH 요청 데이터 : ${bodyData}`);
+  // console.log(`PATCH 요청 데이터 : ${bodyData}`);
 
   return api.put(endpoint, bodyData, {
     headers: {

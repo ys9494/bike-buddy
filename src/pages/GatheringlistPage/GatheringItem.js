@@ -17,20 +17,34 @@ import {
 
 import { timeFormat } from "../../commons/utils";
 import * as API from "../../commons/api";
-import { useUserState } from "../../context/UserContext";
 import { useNavigate } from "react-router";
 import { ROUTE } from "../../routes/route";
 
-const GatheringItem = (gatheringItem) => {
-  const [isApplied, setIsApplied] = useState(faTruckMedical);
+import { decodeToken } from "../../commons/utils";
 
-  const { isLoggedIn } = useUserState();
+const GatheringItem = (gatheringItem) => {
+  const [isMyGathering, setMyGathering] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (gatheringItem) {
+      const decToken = decodeToken();
+      if (decToken) {
+        if (isMyGathering?.owner_user_id === decToken) {
+          setMyGathering(true);
+        }
+      }
+    }
+  }, []);
+
+  console.log("is", isMyGathering);
 
   const handleApply = async (e) => {
     e.preventDefault();
 
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
+      alert("로그인이 필요한 서비스입니다.");
       navigate("/login");
     } else {
       const { data } = await API.post(`apply/${gatheringItem.id}`);
@@ -67,15 +81,15 @@ const GatheringItem = (gatheringItem) => {
         <div>{gatheringItem.gather_desc}</div>
       </GatheringDetail>
 
-      {isApplied ? (
-        <ApplyButtonWrapper>
-          <button onClick={handleApply}>참가 신청</button>
-        </ApplyButtonWrapper>
-      ) : (
+      {isMyGathering ? (
         <EditButtonWrapper>
           <button>수정</button>
           <button>삭제</button>
         </EditButtonWrapper>
+      ) : (
+        <ApplyButtonWrapper>
+          <button onClick={handleApply}>참가 신청</button>
+        </ApplyButtonWrapper>
       )}
     </GatheringItemWrapper>
   );
