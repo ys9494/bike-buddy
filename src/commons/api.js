@@ -41,7 +41,7 @@ async function patch(endpoint, data) {
   console.log(`PATCH 요청 : ${endpoint}`);
   console.log(`PATCH 요청 데이터 : ${bodyData}`);
 
-  return api.post(endpoint, bodyData, {
+  return api.put(endpoint, bodyData, {
     headers: {
       "Content-Type": "application/json",
       // JWT 토큰

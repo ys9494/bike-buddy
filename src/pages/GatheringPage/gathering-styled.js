@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const GatheringWrapper = styled.div`
-  max-width: 1200px;
   display: flex;
-  justify-content: center;
-  margin: 20px auto;
+  margin: 20px 350px;;
   background-color: beige;
   padding: 70px;
   border-radius: 30px;
@@ -18,7 +16,6 @@ export const GatheringWrapper = styled.div`
 export const GatheringForm = styled.form`
   display: flex;
   flex-direction: column;
-  /* margin: 0 220px; */
 `;
 
 export const InputWrapper = styled.div`
@@ -58,15 +55,15 @@ export const InputWrapper = styled.div`
 `;
 
 export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   button{
     width: 150px;
     height: 48px;
     background-color: green;
     border-radius: 15px;
     border-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     font-weight: bold;
     font-size: 1.1rem;

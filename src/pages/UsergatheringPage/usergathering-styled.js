@@ -14,7 +14,8 @@ export const UsergatheringWrapper = styled.div`
   `;
 
 export const UsergatheringForm = styled.div`
-  margin: 0 220px;
+  display: flex;
+  flex-direction: column;
   `;
   
 export const InputWrapper = styled.div`

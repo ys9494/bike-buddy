@@ -30,19 +30,39 @@ const Usergathering = () => {
     useEffect(()=> {
       console.log("파람스:", params);
     })
-
+//     duration
+// : 
+// 20
+// gather_desc
+// : 
+// "fast"
+// id
+// : 
+// 11
+// rent_name
+// : 
+// "신한은행 서교동지점"
+// start_time
+// : 
+// "2023-03-24T15:38:00.000Z"
+// title
+// : 
+// "run"
+// total_members
+// : 
+// 3
     useEffect(()=> {
       params && (async () => {
         try {
           const response = await API.get(`/gathering?type=gather&id=${params.id}`);
-          const gathering = response.data;
-          console.log("게더링: ", gathering)
-          // setTitle(gathering.title);
-          // setDate(gathering.date);
-          // setRentalShop(gathering.rentalshop);
-          // setTime(gathering.time);
-          // setContent(gathering.content);
-          // setCount(gathering.count);
+          const gathering = response.data.data[0];
+          console.log("게더링: ", gathering);
+          setTitle(gathering.title);
+          setDate(gathering.start_time?.slice(0,16));
+          setRentalShop(gathering.rent_name);
+          setTime(gathering.duration);
+          setContent(gathering.gather_desc);
+          setCount(gathering.total_members);
         } catch(err) {
           console.log(err);
         }
@@ -50,17 +70,16 @@ const Usergathering = () => {
     }, [ params]);
 
     
-    // 수정
+    
     const handleModify = async() => {
       try {
-        await API.patch(`/gatherings/${params.id}`, {
+        await API.patch(`/gathering/${params.id}`, {
           title,
-          date,
-          rentalId,
-          rentalshop,
-          time,
-          count,
-          content,
+          start_time: date,
+          rent_name: rentalshop,
+          duration: time,
+          total_members: count,
+          gather_desc: content,
         });
         alert("수정되었습니다.");
       } catch (err) {
@@ -71,7 +90,7 @@ const Usergathering = () => {
     // 삭제
     const handleDelete = async() => {
       try {
-        await API.delete(`/gatherings/${params.id}`);
+        await API.delete(`/gathering/${params.id}`);
       } catch(err) {
         console.log(err);
       }
@@ -112,7 +131,7 @@ const Usergathering = () => {
                 readOnly/>
             </InputWrapper>
             <InputWrapper>
-              <label>소요시간</label>
+              <label>소요시간(분)</label>
               <br/>
               <input
                 type = "number"
@@ -143,18 +162,6 @@ const Usergathering = () => {
                 style={{ height: '110px'}} />              
             </InputWrapper>
             <br/>
-            {/* {gatheringList.map((item, idx) => {
-              return (
-                <InputWrapper key={item.id} className="key">
-                  <label>제목</label>
-                  <br/>
-                  <input placeholder ={item.title}></input>
-                  <div>{item.date}</div>
-                  <div>{item.rentalshop}</div>
-                  <div>{item.time}</div>
-                </InputWrapper>
-              );
-            })} */}
             <ButtonWrapper>
               <Button variant="success" onClick={(e) => {
                 e.preventDefault();
