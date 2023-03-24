@@ -14,12 +14,16 @@ const Main = () => {
     const yearResult = await API.get("/charts/1");
     const hourResult = await API.get("/charts/2");
 
-    console.log("hour", hourResult);
-    console.log("year", yearResult);
+    console.log("hour", hourResult.data.data);
+    setHourChart(hourResult.data.data);
+
+    console.log("year", yearResult.data.data);
+    setYearChart(yearResult.data.data);
   };
 
   useEffect(() => {
     getAPI();
+    console.log("chart", yearChart);
   }, []);
 
   return (

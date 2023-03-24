@@ -14,9 +14,9 @@ async function get(endpoint) {
 
   return api.get(endpoint, {
     // jwt 토큰 헤더에 담아서 백엔드 서버에 보냄
-    // headers: {
-    //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-    // },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
 }
 
