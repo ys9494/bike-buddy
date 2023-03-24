@@ -11,12 +11,27 @@ import { ROUTE } from "../routes/route";
 import { useUserDispatch, useUserState } from "../context/UserContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
 
 const Header = () => {
   const { isLoggedIn } = useUserState();
   const dispatch = useUserDispatch();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      dispatch({
+        type: "LOGIN",
+        isLoggedIn: true,
+      });
+    } else {
+      dispatch({
+        type: "LOGOUT",
+        isLoggedIn: false,
+      });
+    }
+  }, []);
 
   const logoutSubmit = () => {
     if (window.confirm("로그아웃 하시겠습니까?")) {

@@ -3,7 +3,7 @@ import { ROUTE_ARR } from "./routes/route";
 import { Route, Routes } from "react-router-dom";
 import { NavermapsProvider } from "react-naver-maps";
 import { Suspense } from "react";
-import { UserProvider } from './context/UserContext'
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
@@ -34,11 +34,11 @@ function App() {
                   path={route.path}
                   element={<route.element />}
                   key={index}
-                  />
-                  );
+                />
+              );
             })}
           </Routes>
-          </UserProvider>
+        </UserProvider>
       </NavermapsProvider>
     </Suspense>
   );

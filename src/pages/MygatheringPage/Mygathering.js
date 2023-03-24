@@ -3,6 +3,7 @@ import {
   MygatheringWrapper,
   MygatheringItems,
   MygatheringItem,
+  EditButtonWrapper,
 } from "./Mygathering-styled";
 import { useMemo } from "react";
 import { useMyGatheringList } from "../../hooks/gathering.hook";
@@ -19,6 +20,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { timeFormat } from "../../commons/utils";
 import { Link, useNavigate } from "react-router-dom";
+import * as API from "../../commons/api";
 
 const Mygathering = () => {
   const { myGatheringList } = useMyGatheringList();
@@ -46,6 +48,29 @@ const Mygathering = () => {
       return gathering.gather_owner !== "F";
     });
   }, [myGatheringList]);
+
+  /** 수정 */
+  const goToEdit = (id) => {
+    if (!isLoggedIn) {
+      navigate("/");
+    } else {
+      navigate(`/gathering/${id}/edit`);
+    }
+  };
+
+  /** 삭제 */
+
+  const handleDelete = (id) => {
+    if (!isLoggedIn) {
+      navigate("/");
+    } else {
+      if (window.confirm("정말 삭제하시겠습니까?")) {
+        const result = API.delete(`/gathering/${id}`);
+        alert("모임이 삭제되었습니다.");
+        // console.log("삭제완료", result);
+      }
+    }
+  };
 
   return (
     <MygatheringWrapper>
@@ -76,9 +101,6 @@ const Mygathering = () => {
                         <span>{item.rent_name}</span>
                       </p>
                       <button>참가취소</button>
-                      <Link to={`/gathering/${item.id}/edit`}>
-                        <span>수정</span>
-                      </Link>
                     </MygatheringItems>
                   </Grid>
                 );
@@ -112,10 +134,12 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <button>
-                        <Link to={`/gathering/${item.id}/edit`}>수정</Link>
-                      </button>
-                      <button>삭제</button>
+                      <EditButtonWrapper>
+                        <button onClick={() => goToEdit(item?.id)}>수정</button>
+                        <button onClick={() => handleDelete(item?.id)}>
+                          삭제
+                        </button>
+                      </EditButtonWrapper>
                     </MygatheringItems>
                   </Grid>
                 );

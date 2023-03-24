@@ -19,6 +19,7 @@ import { timeFormat } from "../../commons/utils";
 import * as API from "../../commons/api";
 import { useUserState } from "../../context/UserContext";
 import { useNavigate } from "react-router";
+import { ROUTE } from "../../routes/route";
 
 const GatheringItem = (gatheringItem) => {
   const [isApplied, setIsApplied] = useState(faTruckMedical);
@@ -31,10 +32,16 @@ const GatheringItem = (gatheringItem) => {
 
     if (!isLoggedIn) {
       navigate("/login");
+    } else {
+      const { data } = await API.post(`apply/${gatheringItem.id}`);
+      console.log("result", data);
+      if (data.success) {
+        alert("참가 신청이 완료되었습니다.");
+        navigate(ROUTE.MYGATHERING.link);
+      } else {
+        alert("이미 참여한 모임입니다.");
+      }
     }
-
-    const result = await API.post(`apply/${gatheringItem.id}`);
-    console.log("result", result);
   };
 
   return (

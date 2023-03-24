@@ -24,12 +24,8 @@ function Gatheringlist() {
 
   return (
     <GatheringlistWrapper>
-      {/* <h1>모임</h1> */}
       <GotoNewGathering>
         <Link to="/location/rental">
-          {/* <span>
-            <FontAwesomeIcon icon={faPeopleGroup} />
-          </span> */}
           <span>모임 만들기</span>
           <span>
             <FontAwesomeIcon icon={faAngleRight} />
@@ -44,13 +40,16 @@ function Gatheringlist() {
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={4}>
               {gatheringList &&
-                gatheringList?.map((gatheringItem) => {
-                  return (
-                    <Grid item xs={12} sm={6} md={4} key={gatheringItem.id}>
-                      <GatheringItem {...gatheringItem} />
-                    </Grid>
-                  );
-                })}
+                gatheringList
+                  ?.slice(0)
+                  .reverse()
+                  .map((gatheringItem) => {
+                    return (
+                      <Grid item xs={12} sm={6} md={4} key={gatheringItem.id}>
+                        <GatheringItem {...gatheringItem} />
+                      </Grid>
+                    );
+                  })}
             </Grid>
           </Box>
         </GatheringItemContainer>
