@@ -91,6 +91,7 @@ const Usergathering = () => {
     const handleDelete = async() => {
       try {
         await API.delete(`/gathering/${params.id}`);
+        alert("삭제되었습니다.");
       } catch(err) {
         console.log(err);
       }
@@ -161,7 +162,6 @@ const Usergathering = () => {
                 placeholder="내용을 입력하세요"
                 style={{ height: '110px'}} />              
             </InputWrapper>
-            <br/>
             <ButtonWrapper>
               <Button variant="success" onClick={(e) => {
                 e.preventDefault();

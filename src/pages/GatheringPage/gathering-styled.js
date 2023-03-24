@@ -58,20 +58,25 @@ export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
   button{
     width: 150px;
     height: 48px;
     background-color: green;
     border-radius: 15px;
     border-color: transparent;
+    color: white;
     cursor: pointer;
     font-weight: bold;
     font-size: 1.1rem;
-    color: #fff;
     transition: all 0.3s;
-
+    
     &:hover {
     opacity: 0.7;
     }
   }
 `;
+
+export const GotoMyGathering = styled.form`
+`;
+
