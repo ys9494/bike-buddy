@@ -74,8 +74,9 @@ const Signup = () => {
         email,
         password,
       });
+      console.log("data", data);
       navigate(ROUTE.HOME.link);
-      localStorage.setItem("token", data.token);
+      // localStorage.setItem("token", data.token); - 회원가입에서 토큰x
       // dispatch({
       //   type: "LOGIN",
       //   // isAdmin: data.isAdmin,

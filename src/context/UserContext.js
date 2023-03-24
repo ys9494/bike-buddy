@@ -2,7 +2,7 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
   isLoggedIn: false,
-  isAdmin: false,
+  // isAdmin: false,
 };
 
 const reducer = (state, action) => {
@@ -10,7 +10,7 @@ const reducer = (state, action) => {
     case "LOGIN":
       return {
         isLoggedIn: true,
-        isAdmin: action.isAdmin,
+        // isAdmin: action.isAdmin,
       };
     case "LOGOUT":
       return {
