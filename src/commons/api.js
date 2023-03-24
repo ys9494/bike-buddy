@@ -30,7 +30,7 @@ async function post(endpoint, data) {
     headers: {
       "Content-Type": "application/json",
       // JWT 토큰
-      //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 }
@@ -45,7 +45,7 @@ async function patch(endpoint, data) {
     headers: {
       "Content-Type": "application/json",
       // JWT 토큰
-      //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
 }
@@ -57,9 +57,9 @@ async function del(endpoint) {
 
   return api.delete(endpoint, {
     // jwt 토큰 헤더에 담아서 백엔드 서버에 보냄
-    // headers: {
-    //   Authorization: `Bearer ${localStorage.getItem("token")}`,
-    // },
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
 }
 
