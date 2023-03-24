@@ -119,10 +119,10 @@ function Gathering() {
               type="number"
               required
               value={time}
-              step="5"
+              step="10"
               onChange={(e) => handleTime(e.target.value)}
               placeholder="소요시간을 입력하세요"
-              min="1"
+              min="0"
             />
           </InputWrapper>
           <InputWrapper>
