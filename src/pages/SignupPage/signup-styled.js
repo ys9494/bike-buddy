@@ -29,6 +29,10 @@ export const SignupForm = styled.form`
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    &:hover {
+      opacity: 0.7;
+      transition: all 0.3s;
+    }
   }
 `;
 
@@ -49,8 +53,16 @@ export const InputWrapper = styled.div`
 `;
 
 export const GotoLogin = styled.div`
-  margin-top: 15px;
-  font-size: 15px;
+  margin-top: 20px;
+  border-bottom: 1px solid #aaa;
+
+  a {
+    font-size: 1rem;
+  }
+  &:hover {
+    border-bottom: 1px solid #000;
+    transition: all 0.3s;
+  }
 `;
 
 export const Button = styled.button``;

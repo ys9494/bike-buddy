@@ -1,5 +1,10 @@
 import React, { useRef, useState, useCallback } from "react";
-import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
+import {
+  LoginWrapper,
+  LoginForm,
+  InputWrapper,
+  GotoSignup,
+} from "./login-styled";
 import { Link, useNavigate } from "react-router-dom";
 import * as API from "../../commons/api";
 import { useUserDispatch } from "../../context/UserContext";
@@ -76,6 +81,9 @@ const Login = () => {
             />
           </InputWrapper>
           <button>로그인</button>
+          <GotoSignup>
+            <Link to="/signup">게정이 없으신가요?</Link>
+          </GotoSignup>
         </LoginForm>
       </LoginWrapper>
     </>
