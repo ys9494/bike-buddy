@@ -38,13 +38,14 @@ function Gatheringlist() {
           <GatheringItemContainer>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={4}>
-                {gatheringList.map((gatheringItem) => {
-                  return (
-                    <Grid item xs={12} sm={6} md={4} key={gatheringItem.id}>
-                      <GatheringItem {...gatheringItem} />
-                    </Grid>
-                  );
-                })}
+                {gatheringList &&
+                  gatheringList?.map((gatheringItem) => {
+                    return (
+                      <Grid item xs={12} sm={6} md={4} key={gatheringItem.id}>
+                        <GatheringItem {...gatheringItem} />
+                      </Grid>
+                    );
+                  })}
               </Grid>
             </Box>
           </GatheringItemContainer>
