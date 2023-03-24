@@ -1,53 +1,92 @@
 import styled from "styled-components";
 
 export const MygatheringWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center; //여러개있으면 없애기
-
-  h1 {
-    padding-top: 80px;
-    font-size: 40px;
-    text-align: center;
-  }
+  max-width: 1200px;
+  margin: 20px auto 0;
+  background-color: beige;
+  border-radius: 30px;
+  padding: 20px;
 `;
 
-export const Mygatheringform = styled.div`
+export const MygatheringItem = styled.div`
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
   flex-direction: column;
-  margin: 20px 200px;
-  background-color: beige;
-  padding: 40px;
-  border-radius: 30px;
-  color: green;
-  width: 400px;
+  margin: 50px;
 
   label {
-    font-size: 30px;
-    text-align: center;
-  }
-  div {
-    font-size: 20px;
-    padding-left: 20px;
-  }
-  button {
-    width: 80px;
-    font-size: 15px;
+    font-size: 24px;
+    font-weight: bold;
     color: green;
-    border-color: black;
-    border-right-color: #ffffff;
-    border-bottom-color: white;
-    border-width: 1px;
-    margin: auto;
-    display: block;
+    text-align: center;
+    margin: 30px;
+  }
+  span {
+    padding-left: 20px;
   }
 `;
 
 export const MygatheringItems = styled.div`
-  font-size: 20px;
-  color: green;
-  margin: 10px 10px;
-  border-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin: 20px auto;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 30px;
+  width: 100%;
+  p {
+    margin: 10px 0;
+    &:first-of-type {
+      font-weight: bold;
+      color: green;
+      font-size: 20px;
+      text-align: left;
+
+      span {
+        margin-left: 0px;
+        padding-left: 0px;
+      }
+    }
+    span {
+      margin-left: 5px;
+      font-size: 20px;
+    }
+  }
+  button {
+    width: 100%;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #eee;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+      transition: all 0.3s;
+    }
+  }
+  a {
+    width: 100%;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #eee;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    font-size: 13px;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+      transition: all 0.3s;
+    }
+    span {
+      margin: 0;
+    }
+  }
 `;
