@@ -4,7 +4,6 @@ export const GatheringlistWrapper = styled.div`
   max-width: 1200px;
   margin: 20px auto 0;
   background-color: beige;
-
   border-radius: 30px;
   padding: 20px;
   h1 {
