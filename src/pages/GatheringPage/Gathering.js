@@ -84,7 +84,7 @@ function Gathering() {
             />
           </InputWrapper>
           <InputWrapper>
-            <label>소요시간</label>
+            <label>소요시간(분)</label>
             <br />
             <input
               type="number"
