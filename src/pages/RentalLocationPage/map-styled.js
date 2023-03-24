@@ -71,18 +71,26 @@ export const MapContainer = styled.div`
 `;
 
 export const AlertZoomInfo = styled.div`
-  width: 200px;
-  height: 100px;
-  background-color: #fff;
-  border-radius: 30px;
+  width: 100%;
+  /* height: 80px; */
+  padding: 10px 0 15px;
+  background-color: rgba(255, 255, 255, 0.7);
+  /* border-radius: 15px; */
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  left: 0;
+  top: 0;
+  /* transform: translate(-50%, -50%); */
   z-index: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  p {
+    &:first-child {
+      font-size: 1.5rem;
+      color: orange;
+    }
+  }
 `;
 
 export const AlertMarkerInfo = styled.div`

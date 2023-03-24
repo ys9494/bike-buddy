@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   GatheringItemWrapper,
   ApplyButtonWrapper,
@@ -15,8 +15,14 @@ import {
   faTruckMedical,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { timeFormat } from "../../commons/utils";
+
 const GatheringItem = (gatheringItem) => {
   const [isApplied, setIsApplied] = useState(faTruckMedical);
+  // useEffect(() => {
+  //   const test = timeFormat(gatheringItem.start_time);
+  //   console.log("test", test);
+  // }, [gatheringItem]);
 
   return (
     <GatheringItemWrapper>
@@ -24,24 +30,21 @@ const GatheringItem = (gatheringItem) => {
         <p>{gatheringItem.title}</p>
         <p>
           <FontAwesomeIcon icon={faLocationDot} />
-          <span>{gatheringItem.rental}</span>
+          <span>{gatheringItem.rental_name}</span>
         </p>
         <p>
           <FontAwesomeIcon icon={faCalendarDays} />
-          <span>{gatheringItem.date}</span>
+          <span>{timeFormat(gatheringItem.start_time)}</span>
         </p>
-
         <p>
-          {/* <span>예상 소요시간</span> */}
           <FontAwesomeIcon icon={faClock} />
-          <span>55분</span>
+          <span>{gatheringItem.duration}분</span>
         </p>
         <p>
-          {/* <span>인원</span> */}
           <FontAwesomeIcon icon={faPersonBiking} />
-          <span>{gatheringItem.count}명</span>
+          <span>{gatheringItem.total_members}명</span>
         </p>
-        <div>{gatheringItem.content}</div>
+        <div>{gatheringItem.gather_desc}</div>
       </GatheringDetail>
 
       {isApplied ? (
