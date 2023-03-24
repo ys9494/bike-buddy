@@ -75,7 +75,7 @@ const Signup = () => {
         password,
       });
       console.log("data", data);
-      navigate(ROUTE.HOME.link);
+      navigate(ROUTE.LOGIN.link);
     } catch (err) {
       console.log("Error", err.response.data);
       alert("이미 사용중인 이메일입니다.");

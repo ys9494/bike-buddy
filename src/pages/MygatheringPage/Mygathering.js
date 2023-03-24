@@ -3,10 +3,11 @@ import {
   MygatheringWrapper,
   MygatheringItems,
   MygatheringItem,
+  EditButtonWrapper,
 } from "./Mygathering-styled";
 import { useMemo } from "react";
 import { useMyGatheringList } from "../../hooks/gathering.hook";
-import { useUserState } from "../../context/UserContext";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
@@ -19,17 +20,19 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { timeFormat } from "../../commons/utils";
 import { Link, useNavigate } from "react-router-dom";
+import * as API from "../../commons/api";
+import { ROUTE } from "../../routes/route";
 
 const Mygathering = () => {
   const { myGatheringList } = useMyGatheringList();
-  const { isLoggedIn } = useUserState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
       navigate("/");
     }
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     console.log(myGatheringList);
@@ -47,8 +50,34 @@ const Mygathering = () => {
     });
   }, [myGatheringList]);
 
+  /** 참가 취소 */
+  const handleCancel = async (id) => {
+    if (window.confirm("참가를 취소하시겠습니까?")) {
+      const result = await API.delete(`/member/${id}`);
+      alert("참가 취소되었습니다.");
+      // console.log("참가 취소", result);
+      navigate(ROUTE.GATHERING_LIST.link);
+    }
+  };
+
+  /** 수정 */
+  const goToEdit = (id) => {
+    navigate(`/gathering/${id}/edit`);
+  };
+
+  /** 삭제 */
+  const handleDelete = async (id) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const result = await API.delete(`/gathering/${id}`);
+      alert("모임이 삭제되었습니다.");
+      // console.log("삭제", result);
+      navigate(ROUTE.GATHERING_LIST.link);
+    }
+  };
+
   return (
     <MygatheringWrapper>
+      <h1>내 모임</h1>
       <MygatheringItem>
         <label>참가신청한 모임</label>
         <br />
@@ -58,8 +87,8 @@ const Mygathering = () => {
             {appliedGatheringList &&
               appliedGatheringList?.map((item, index) => {
                 return (
-                  <Grid item xs={12} sm={6} md={4} key={item.id}>
-                    <MygatheringItems key={item.id} className="key">
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <MygatheringItems>
                       <p>
                         <span>{item.title}</span>
                       </p>
@@ -75,10 +104,9 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <button>참가취소</button>
-                      <Link to={`/gathering/${item.id}/edit`}>
-                        <span>수정</span>
-                      </Link>
+                      <button onClick={() => handleCancel(item.id)}>
+                        참가취소
+                      </button>
                     </MygatheringItems>
                   </Grid>
                 );
@@ -95,8 +123,8 @@ const Mygathering = () => {
             {ownGatheringList &&
               ownGatheringList?.map((item, index) => {
                 return (
-                  <Grid item xs={12} sm={6} md={4} key={item.id}>
-                    <MygatheringItems key={item.id}>
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <MygatheringItems>
                       <p>
                         <span>{item.title}</span>
                       </p>
@@ -112,10 +140,12 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <button>
-                        <Link to={`/gathering/${item.id}/edit`}>수정</Link>
-                      </button>
-                      <button>삭제</button>
+                      <EditButtonWrapper>
+                        <button onClick={() => goToEdit(item?.id)}>수정</button>
+                        <button onClick={() => handleDelete(item?.id)}>
+                          삭제
+                        </button>
+                      </EditButtonWrapper>
                     </MygatheringItems>
                   </Grid>
                 );

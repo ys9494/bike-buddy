@@ -56,6 +56,7 @@ export const InputWrapper = styled.div`
     
 export const ButtonWrapper = styled.div`
   display: flex;
+  margin-top: 15px;
   button{
     width: 150px;
     height: 48px;
@@ -66,6 +67,7 @@ export const ButtonWrapper = styled.div`
     justify-content: center;
     align-items: center;
     margin: 5px;
+    
     cursor: pointer;
     font-weight: bold;
     font-size: 1.1rem;

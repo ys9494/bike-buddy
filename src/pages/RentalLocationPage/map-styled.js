@@ -4,13 +4,14 @@ export const MapWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 `;
 
 export const LocationInfoWrapper = styled.div`
-  width: 420px;
-  height: 500px;
+  width: 320px;
+  height: 560px;
   margin-left: 20px;
-  /* background-color: #fff; */
   padding: 40px;
   border-radius: 5px;
 `;
@@ -64,22 +65,19 @@ export const GotoGatheringButton = styled.div`
 
 export const MapContainer = styled.div`
   position: relative;
-  width: 420px;
-  height: 500px;
+  width: 600px;
+  height: 560px;
   border: 5px solid #fff;
   border-radius: 5px;
 `;
 
 export const AlertZoomInfo = styled.div`
   width: 100%;
-  /* height: 80px; */
   padding: 10px 0 15px;
   background-color: rgba(255, 255, 255, 0.7);
-  /* border-radius: 15px; */
   position: absolute;
   left: 0;
   top: 0;
-  /* transform: translate(-50%, -50%); */
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -100,5 +98,9 @@ export const AlertMarkerInfo = styled.div`
     font-weight: bold;
     color: green;
     text-align: center;
+    span {
+      color: #ffa401;
+      font-size: 1.6rem;
+    }
   }
 `;

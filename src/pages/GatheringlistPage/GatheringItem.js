@@ -17,24 +17,45 @@ import {
 
 import { timeFormat } from "../../commons/utils";
 import * as API from "../../commons/api";
-import { useUserState } from "../../context/UserContext";
 import { useNavigate } from "react-router";
+import { ROUTE } from "../../routes/route";
+
+import { decodeToken } from "../../commons/utils";
 
 const GatheringItem = (gatheringItem) => {
-  const [isApplied, setIsApplied] = useState(faTruckMedical);
+  const [isMyGathering, setMyGathering] = useState(false);
 
-  const { isLoggedIn } = useUserState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (gatheringItem) {
+      const decToken = decodeToken();
+      if (decToken) {
+        if (isMyGathering?.owner_user_id === decToken) {
+          setMyGathering(true);
+        }
+      }
+    }
+  }, []);
+
+  console.log("is", isMyGathering);
 
   const handleApply = async (e) => {
     e.preventDefault();
 
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
+      alert("로그인이 필요한 서비스입니다.");
       navigate("/login");
+    } else {
+      const { data } = await API.post(`apply/${gatheringItem.id}`);
+      console.log("result", data);
+      if (data.success) {
+        alert("참가 신청이 완료되었습니다.");
+        navigate(ROUTE.MYGATHERING.link);
+      } else {
+        alert("이미 참여한 모임입니다.");
+      }
     }
-
-    const result = await API.post(`apply/${gatheringItem.id}`);
-    console.log("result", result);
   };
 
   return (
@@ -60,15 +81,15 @@ const GatheringItem = (gatheringItem) => {
         <div>{gatheringItem.gather_desc}</div>
       </GatheringDetail>
 
-      {isApplied ? (
-        <ApplyButtonWrapper>
-          <button onClick={handleApply}>참가 신청</button>
-        </ApplyButtonWrapper>
-      ) : (
+      {isMyGathering ? (
         <EditButtonWrapper>
           <button>수정</button>
           <button>삭제</button>
         </EditButtonWrapper>
+      ) : (
+        <ApplyButtonWrapper>
+          <button onClick={handleApply}>참가 신청</button>
+        </ApplyButtonWrapper>
       )}
     </GatheringItemWrapper>
   );

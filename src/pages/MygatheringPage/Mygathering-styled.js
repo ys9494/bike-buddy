@@ -6,6 +6,12 @@ export const MygatheringWrapper = styled.div`
   background-color: beige;
   border-radius: 30px;
   padding: 20px;
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+  }
 `;
 
 export const MygatheringItem = styled.div`
@@ -13,13 +19,13 @@ export const MygatheringItem = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 50px;
+  margin-top: 20px;
 
   label {
     font-size: 24px;
     font-weight: bold;
     color: green;
-    text-align: center;
+    /* text-align: center; */
     margin: 30px;
   }
   span {
@@ -28,21 +34,21 @@ export const MygatheringItem = styled.div`
 `;
 
 export const MygatheringItems = styled.div`
+  height: 380px;
+  margin: 20px auto;
+  padding: 30px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
-  margin: 20px auto;
-  padding: 30px 40px;
   background-color: #fff;
   border-radius: 30px;
-  width: 100%;
+
   p {
     margin: 10px 0;
     &:first-of-type {
       font-weight: bold;
       color: green;
-      font-size: 20px;
+      /* font-size: 20px; */
       text-align: left;
 
       span {
@@ -52,41 +58,39 @@ export const MygatheringItems = styled.div`
     }
     span {
       margin-left: 5px;
-      font-size: 20px;
+      font-size: 18px;
     }
   }
+  > button {
+    width: 100%;
+    height: 32px;
+    border-radius: 15px;
+    background-color: #eee;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      background-color: #ccc;
+      transition: all 0.3s;
+    }
+  }
+`;
+
+export const EditButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+
   button {
-    width: 100%;
+    width: 45%;
     height: 32px;
     border-radius: 15px;
     background-color: #eee;
     border: none;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
     &:hover {
       background-color: #ccc;
       transition: all 0.3s;
-    }
-  }
-  a {
-    width: 100%;
-    height: 32px;
-    border-radius: 15px;
-    background-color: #eee;
-    border: none;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    text-align: center;
-    font-size: 13px;
-    cursor: pointer;
-    &:hover {
-      background-color: #ccc;
-      transition: all 0.3s;
-    }
-    span {
-      margin: 0;
     }
   }
 `;

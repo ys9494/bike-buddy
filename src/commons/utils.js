@@ -27,18 +27,21 @@ export const getUserId = () => {
 };
 
 export const decodeToken = (token) => {
-  // try {
-  //   const token = localStorage.getItem("token");
+  try {
+    const token = localStorage.getItem("token");
 
-  //   if (token) {
-  //     const decoded = jwt_decode(token);
-  //     const { userId } = decoded;
-  //     return userId;
-  //   }
-  // } catch (error) {
-  //   // invalid token format
-  //   console.log("error: " + JSON.stringify(localStorage));
-  // }
+    if (token) {
+      const decoded = jwt_decode(token);
+      // console.log("de", decoded);
+      const { user_id } = decoded;
+      return user_id;
+    } else {
+      return undefined;
+    }
+  } catch (error) {
+    // invalid token format
+    console.log("error: " + JSON.stringify(localStorage));
+  }
 
   console.log(jwt_decode(token));
 };

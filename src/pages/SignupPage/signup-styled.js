@@ -55,4 +55,6 @@ export const GotoLogin = styled.div`
 
 export const Button = styled.button``;
 
-export const InvalidMessage = styled.div``;
+export const InvalidMessage = styled.div`
+  color: red;
+`;

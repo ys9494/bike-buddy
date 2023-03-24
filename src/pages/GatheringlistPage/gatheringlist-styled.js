@@ -22,7 +22,7 @@ export const GotoNewGathering = styled.div`
   height: 60px;
   border-radius: 5px;
   background-color: #036530;
-  margin: 20px;
+  margin: 20px auto;
   padding: 0 20px;
   border: 1px solid #036530;
   z-index: 99;

@@ -79,14 +79,19 @@ const Map = ({ bikeData }) => {
   /** 모임 생성 페이지로  */
 
   const goToGathering = () => {
-    const stationInfo = locationData?.stationName?.split(".");
-    navigate("/gathering", {
-      state: {
-        id: stationInfo[0].trim(),
-        name: stationInfo[1].trim(),
-      },
-    });
-    console.log("대여소 정보", stationInfo);
+    if (!localStorage.getItem("token")) {
+      alert("로그인이 필요한 서비스입니다.");
+      navigate("/login");
+    } else {
+      const stationInfo = locationData?.stationName?.split(".");
+      navigate("/gathering", {
+        state: {
+          id: stationInfo[0].trim(),
+          name: stationInfo[1].trim(),
+        },
+      });
+      console.log("대여소 정보", stationInfo);
+    }
   };
 
   return (
@@ -170,8 +175,8 @@ const Map = ({ bikeData }) => {
               </p>
             </div>
 
-            <GotoGatheringButton>
-              <span onClick={goToGathering}>모임 만들기</span>
+            <GotoGatheringButton onClick={goToGathering}>
+              <span>모임 만들기</span>
             </GotoGatheringButton>
           </LocationDataWrapper>
         ) : (
@@ -181,7 +186,9 @@ const Map = ({ bikeData }) => {
             </p>
             <p>마커를 클릭해서</p>
             <p>대여소 정보를 확인하고</p>
-            <p>모임을 만들어보세요</p>
+            <p>
+              <span>모임</span>을 만들어보세요
+            </p>
             <p>
               <FontAwesomeIcon icon={faFaceSmileWink} />
             </p>

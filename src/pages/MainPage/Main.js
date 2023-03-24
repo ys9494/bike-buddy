@@ -1,74 +1,78 @@
 import {
   MainWrapper,
   ChartWrapper,
+  DescWrapper,
   BannerContainer1,
   BannerContainer2,
   BannerContainer3,
-  BannerContainer4,
-  BannerContainer5,
+  GotoGathering,
 } from "./main-styled";
 import YearChart from "./YearChart";
 import HourChart from "./HourChart";
+import { SectionsContainer, Section } from "react-fullpage";
+import { Link } from "react-router-dom";
+import { ROUTE } from "../../routes/route";
+
+let options = {
+  anchors: ["1", "2", "3"],
+};
 
 const Main = () => {
   return (
     <MainWrapper>
-      <BannerContainer1>
-        <div>
-          <p>공공 자전거,</p>
-          <p> 이용해 본 경험이 있으신가요?</p>
-        </div>
-      </BannerContainer1>
-      {/* <BannerContainer2>
-        <div>
-          <div>
-            <p>공공자전거란</p>
-            <p>
-              주민들의 편의를 도모하고 교통 체증, 대기오염 문제를 해결하기 위해
-            </p>
-            <p>정부나 지역 내 민간단체가 대여, 반납 체계를 갖춰</p>
-            <p>빌려주는 자전거를 말합니다.</p>
-          </div>
-          <div>
-            <p>공공자전거는</p>
-            <p>
-              &quot;누구나, 언제나, 어디서나 &quot; 쉽고 편리하게 이용할 수
-              있습니다.
-            </p>
-          </div>
-        </div>
-      </BannerContainer2> */}
+      <SectionsContainer {...options}>
+        <Section>
+          <BannerContainer1>
+            <div>
+              <p>공공자전거,</p>
+              <p> 이용해 본 경험이 있으신가요?</p>
+            </div>
+          </BannerContainer1>
+        </Section>
+        <Section>
+          <BannerContainer2>
+            <ChartWrapper>
+              <div>
+                <YearChart />
+              </div>
+            </ChartWrapper>
+            <DescWrapper>
+              <p>&quot;누구나, 언제나, 어디서나 &quot;</p>
+              <p>쉽고 편리하게 이용할 수 있는</p>
+              <span>공공자전거</span>
+              <div>
+                <p>매년 이용건수가</p>
+                <p>증가하는 추세를 보이며</p>
+                <p>교통수단 중 하나로 자리잡았습니다.</p>
+              </div>
+            </DescWrapper>
+          </BannerContainer2>
+        </Section>
+        <Section>
+          <BannerContainer3>
+            <ChartWrapper>
+              <div>
+                <HourChart />
+              </div>
+            </ChartWrapper>
+            <DescWrapper>
+              <span>시간대별 공공자전거 이용건수</span>
+              <div>
+                <p>&quot;평일 출퇴근시간&quot;에</p>
+                <p>가장 많은 이용률을 보입니다.</p>
+              </div>
 
-      {/* <BannerContainer3>
-        <div>
-          <p>공공자전거란</p>
-          <p>
-            주민들의 편의를 도모하고 교통 체증, 대기오염 문제를 해결하기 위해
-          </p>
-          <p>정부나 지역 내 민간단체가 대여, 반납 체계를 갖춰</p>
-          <p>빌려주는 자전거를 말합니다.</p>
-        </div>
-        <div>
-          <p>공공자전거는</p>
-          <p>
-            &quot;누구나, 언제나, 어디서나 &quot; 쉽고 편리하게 이용할 수
-            있습니다.
-          </p>
-        </div>
-      </BannerContainer3> */}
+              <p>한산한 주말 출퇴근시간대,</p>
+              <p>모임을 통해 하루를 새롭게 시작하거나</p>
+              <p>마무리 해보는 건 어떨까요?</p>
 
-      <BannerContainer4>
-        <h1>연도별 차트</h1>
-        <ChartWrapper>
-          <YearChart />
-        </ChartWrapper>
-      </BannerContainer4>
-      <BannerContainer5>
-        <h1>시간대별 차트</h1>
-        <ChartWrapper>
-          <HourChart />
-        </ChartWrapper>
-      </BannerContainer5>
+              <GotoGathering>
+                <Link to={ROUTE.GATHERING_LIST.link}>모임하러 가기</Link>
+              </GotoGathering>
+            </DescWrapper>
+          </BannerContainer3>
+        </Section>
+      </SectionsContainer>
     </MainWrapper>
   );
 };

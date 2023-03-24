@@ -20,7 +20,7 @@ const Login = () => {
   const loginAPI = async (userData) => {
     try {
       const { data } = await API.post("/users/sign-in", userData);
-      console.log("login", data);
+      // console.log("login", data);
       localStorage.setItem("token", data.token);
 
       dispatch({
