@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useEffect, useState } from "react";
 import { Bar, Line } from "react-chartjs-2";
 import * as API from "../../commons/api";
 
@@ -97,7 +98,6 @@ const YearChart = () => {
     },
   };
 
-const YearChart = () => {
   return (
     <div>
       <h2>연도별</h2>

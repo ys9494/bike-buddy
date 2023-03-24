@@ -19,7 +19,7 @@ function Gatheringlist() {
   const isLoading = false;
 
   const getGatheringData = async () => {
-    const result = await API.get("/gathering");
+    const result = await API.get("/all/gathering");
     setGatheringList(result?.data.data);
     console.log("res", result);
   };
