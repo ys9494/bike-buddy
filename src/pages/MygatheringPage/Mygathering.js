@@ -104,9 +104,7 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <p>
-                        <span>{item.content}</span>
-                      </p>
+
                       <button onClick={() => handleCancel(item.id)}>
                         참가취소
                       </button>
@@ -143,9 +141,7 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <p>
-                        <span>{item.content}</span>
-                      </p>
+
                       <EditButtonWrapper>
                         <button onClick={() => goToEdit(item?.id)}>수정</button>
                         <button onClick={() => handleDelete(item?.id)}>

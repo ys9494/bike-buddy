@@ -6,9 +6,13 @@ export function sleep(msec) {
 }
 
 export const timeFormat = (date) => {
-  const dayjsDate = dayjs(date, "YYYY-MM-DD HH:mm:ss");
+  // const dayjsDate = dayjs(date, "YYYY-MM-DD HH:mm");
 
-  return [dayjsDate.format("YYYY.MM.DD HH시 mm분")];
+  const res = date.split("T");
+  const dateResult = res[0];
+  const timeArr = res[1].split(":");
+
+  return `${dateResult} ${timeArr[0]}시 ${timeArr[1]}분`;
 };
 
 export const getUserId = () => {

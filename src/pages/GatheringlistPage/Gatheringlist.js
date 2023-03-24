@@ -18,9 +18,9 @@ import { Link } from "react-router-dom";
 function Gatheringlist() {
   const { gatheringList, isLoading } = useGatheringList();
 
-  // useEffect(() => {
-  //   console.log("gathering list", gatheringList);
-  // }, [gatheringList]);
+  useEffect(() => {
+    console.log("gathering list", gatheringList);
+  }, [gatheringList]);
 
   return (
     <GatheringlistWrapper>
