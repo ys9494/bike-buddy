@@ -38,7 +38,7 @@ const GatheringItem = (gatheringItem) => {
     }
   }, []);
 
-  console.log(gatheringItem?.owner_user_id, isMyGathering);
+  // console.log(gatheringItem?.owner_user_id, isMyGathering);
 
   const handleApply = async (e) => {
     e.preventDefault();
