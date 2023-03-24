@@ -16,13 +16,13 @@ const Login = () => {
   /** 로그인 API */
   const loginAPI = async (userData) => {
     try {
-      const { data } = await API.post("../common/api", userData);
-      console.log("login", data.isAdmin);
-      localStorage.setItem("");
+      const { data } = await API.post("/users/sign-in", userData);
+      console.log("login", data);
+      localStorage.setItem("token", data.token);
 
       dispatch({
         type: "LOGIN",
-        isUser: data.isUser,
+        isLoggedIn: true,
       });
 
       navigate("/");
@@ -44,18 +44,18 @@ const Login = () => {
     [email, password]
   );
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
 
-    const loginData = {
-      email,
-      password,
-    };
+  //   const loginData = {
+  //     email,
+  //     password,
+  //   };
 
-    const result = await API.post("/users/sign-in", loginData);
+  //   const result = await API.post("/users/sign-in", loginData);
 
-    console.log("Login result", result.data.data);
-  };
+  //   console.log("Login result", result.data.data);
+  // };
 
   return (
     <>
@@ -85,7 +85,7 @@ const Login = () => {
               placeholder="비밀번호를 입력하세요"
             />
           </InputWrapper>
-          <button onClick={handleLogin}>
+          <button>
             {/* <Link to="../main" style={{ textDecoration: "none" }}></Link> */}
             로그인
           </button>

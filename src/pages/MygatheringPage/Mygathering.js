@@ -40,12 +40,16 @@ const Mygathering = () => {
               <MygatheringItems key={item.id} className="key">
                 <span>제목</span>
                 <span>{item.title}</span>
+                <br />
                 <span>날짜</span>
                 <span>{item.date}</span>
+                <br />
                 <span>시간</span>
                 <span>{item.time}</span>
+                <br />
                 <span>대여소명</span>
                 <span>{item.rentalshop}</span>
+                <br />
               </MygatheringItems>
             );
           })}
