@@ -36,7 +36,7 @@ const Usergathering = () => {
         try {
           const response = await API.get(`/gathering?type=gather&id=${params.id}`);
           const gathering = response.data;
-          console.log("게더링: ", gathering)
+          console.log("게더링: ", gathering);
           // setTitle(gathering.title);
           // setDate(gathering.date);
           // setRentalShop(gathering.rentalshop);
@@ -143,18 +143,6 @@ const Usergathering = () => {
                 style={{ height: '110px'}} />              
             </InputWrapper>
             <br/>
-            {/* {gatheringList.map((item, idx) => {
-              return (
-                <InputWrapper key={item.id} className="key">
-                  <label>제목</label>
-                  <br/>
-                  <input placeholder ={item.title}></input>
-                  <div>{item.date}</div>
-                  <div>{item.rentalshop}</div>
-                  <div>{item.time}</div>
-                </InputWrapper>
-              );
-            })} */}
             <ButtonWrapper>
               <Button variant="success" onClick={(e) => {
                 e.preventDefault();
