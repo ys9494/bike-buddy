@@ -76,11 +76,6 @@ const Signup = () => {
       });
       console.log("data", data);
       navigate(ROUTE.HOME.link);
-      // localStorage.setItem("token", data.token); - 회원가입에서 토큰x
-      // dispatch({
-      //   type: "LOGIN",
-      //   // isAdmin: data.isAdmin,
-      // });
     } catch (err) {
       console.log("Error", err.response.data);
       alert("이미 사용중인 이메일입니다.");
@@ -104,10 +99,11 @@ const Signup = () => {
   };
   return (
     <SignupWrapper>
-      <h1>SIGN UP</h1>
+      <h1>회원가입</h1>
       <SignupForm onSubmit={signupSubmit}>
         <InputWrapper>
-          <label>NAME</label>
+          <label>이름</label>
+          <br />
           <input
             type="text"
             required
@@ -123,7 +119,8 @@ const Signup = () => {
             : null}
         </InputWrapper>
         <InputWrapper>
-          <label>EMAIL</label>
+          <label>이메일</label>
+          <br />
           <input
             type="text"
             required
@@ -139,7 +136,8 @@ const Signup = () => {
             : null}
         </InputWrapper>
         <InputWrapper>
-          <label>PASSWORD</label>
+          <label>비밀번호</label>
+          <br />
           <input
             type="password"
             required
@@ -150,7 +148,8 @@ const Signup = () => {
           />
         </InputWrapper>
         <InputWrapper>
-          <label>PASSWORD CONFIRM</label>
+          <label>비밀번호 확인</label>
+          <br />
           <input
             type="password"
             required
@@ -164,10 +163,11 @@ const Signup = () => {
             <InvalidMessage>{InvalidMessages.password}</InvalidMessage>
           )}
         </InputWrapper>
-        <Button>CREATE ACCOUNT</Button>
+        <Button>회원가입</Button>
         <GotoLogin>
-          <Link to="/login">Already have an account?</Link>
+          <Link to="/login">이미 계정이 있으신가요?</Link>
         </GotoLogin>
+        <br />
       </SignupForm>
     </SignupWrapper>
   );

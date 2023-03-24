@@ -16,13 +16,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { timeFormat } from "../../commons/utils";
+import * as API from "../../commons/api";
+import { useUserState } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 
 const GatheringItem = (gatheringItem) => {
   const [isApplied, setIsApplied] = useState(faTruckMedical);
-  // useEffect(() => {
-  //   const test = timeFormat(gatheringItem.start_time);
-  //   console.log("test", test);
-  // }, [gatheringItem]);
+
+  const { isLoggedIn } = useUserState();
+  const navigate = useNavigate();
+
+  const handleApply = async (e) => {
+    e.preventDefault();
+
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+
+    const result = await API.post(`apply/${gatheringItem.id}`);
+    console.log("result", result);
+  };
 
   return (
     <GatheringItemWrapper>
@@ -30,7 +43,7 @@ const GatheringItem = (gatheringItem) => {
         <p>{gatheringItem.title}</p>
         <p>
           <FontAwesomeIcon icon={faLocationDot} />
-          <span>{gatheringItem.rental_name}</span>
+          <span>{gatheringItem.rent_name}</span>
         </p>
         <p>
           <FontAwesomeIcon icon={faCalendarDays} />
@@ -49,7 +62,7 @@ const GatheringItem = (gatheringItem) => {
 
       {isApplied ? (
         <ApplyButtonWrapper>
-          <button>참가 신청</button>
+          <button onClick={handleApply}>참가 신청</button>
         </ApplyButtonWrapper>
       ) : (
         <EditButtonWrapper>

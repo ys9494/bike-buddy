@@ -42,7 +42,7 @@ export const BannerContainer1 = styled(BannerContainer)`
 
 export const BannerContainer2 = styled(BannerContainer)`
   height: calc(100vh - 100px);
-  background-image: url("img/bike-street-img.jpg");
+  background-image: url("img/bike-street-img3.jpg");
   background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
   position: relative;

@@ -20,26 +20,39 @@ export const SignupForm = styled.form`
   align-items: center;
 
   button {
-    background-color: black;
+    background-color: green;
     color: white;
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 20px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     width: 200px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
   }
 `;
 
 export const InputWrapper = styled.div`
-  margin-top: 25px;
+  margin-top: 20px;
   input {
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
     width: 400px;
+    border: 3px solid green;
+    border-radius: 10px;
+    &:focus {
+      border-color: green;
+      outline: green;
+      border-width: 4px;
+    }
   }
 `;
 
-export const InvalidMessage = styled.div``;
-
-export const GotoLogin = styled.div``;
+export const GotoLogin = styled.div`
+  margin-top: 15px;
+  font-size: 15px;
+`;
 
 export const Button = styled.button``;
+
+export const InvalidMessage = styled.div``;

@@ -7,8 +7,11 @@ import {
 } from "./gathering-styled";
 import * as API from "../../commons/api";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useUserState } from "../../context/UserContext";
 
 function Gathering() {
+  const { isLoggedIn } = useUserState();
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [rentalshop, setRentalShop] = useState("");
@@ -18,6 +21,12 @@ function Gathering() {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,12 +89,11 @@ function Gathering() {
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
-              placeholder="대여소를 입력하세요"
               readOnly
             />
           </InputWrapper>
           <InputWrapper>
-            <label>소요시간</label>
+            <label>소요시간(분)</label>
             <br />
             <input
               type="number"
@@ -110,8 +118,7 @@ function Gathering() {
           <InputWrapper>
             <label>내용</label>
             <br />
-            <input
-              type="content"
+            <textarea
               required
               maxLength="20"
               value={content}

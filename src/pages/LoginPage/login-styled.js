@@ -19,24 +19,31 @@ export const LoginForm = styled.form`
   display: flex;
   align-items: center;
   button {
-    background-color: black;
+    background-color: green;
     color: white;
-    margin: 40px;
+    margin-top: 30px;
     font-size: 20px;
-    padding: 5px 20px;
+    padding: 10px 20px;
     width: 200px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
   }
 `;
 
 export const InputWrapper = styled.div`
-  margin-top: 25px;
-  label {
-    flex-direction: column;
-  }
+  margin-top: 20px;
   input {
     //이메일이랑 이메일칸이랑 줄바꿈하기 '<br/>'로 처리?
     padding: 10px;
-    font-size: 15px;
+    font-size: 20px;
     width: 400px;
+    border: 3px solid green;
+    border-radius: 10px;
+    &:focus {
+      border-color: green;
+      outline: green;
+      border-width: 4px;
+    }
   }
 `;
