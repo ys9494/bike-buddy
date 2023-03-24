@@ -1,38 +1,58 @@
-import React, {
-  useRef,
-  useState,
-  // , useNavigate
-} from "react";
-// import { useCallback } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { LoginWrapper, LoginForm, InputWrapper } from "./login-styled";
-// import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as API from "../../commons/api";
+import { useUserDispatch } from "../../context/UserContext";
+
+import { decodeToken } from "../../commons/utils";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const passwordRef = useRef();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const dispatch = useUserDispatch();
 
-    const loginData = {
-      email,
-      password,
-    };
+  /** 로그인 API */
+  const loginAPI = async (userData) => {
+    try {
+      const { data } = await API.post("/users/sign-in", userData);
+      console.log("login", data);
+      localStorage.setItem("token", data.token);
 
-    const result = await API.post("/users/sign-in", loginData);
+      dispatch({
+        type: "LOGIN",
+        isLoggedIn: true,
+      });
 
-    console.log("Login result", result.data.data);
+      navigate("/");
+    } catch (err) {
+      console.log("Error", err?.response?.data);
+      navigate("/login");
+      alert("이메일 또는 비밀번호를 확인해주세요");
+    }
   };
+
+  /** 로그인 제출 */
+  const loginSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      loginAPI({ email, password });
+      setEmail("");
+      setPassword("");
+    },
+    [email, password]
+  );
 
   return (
     <>
       <LoginWrapper>
+        <button onClick={test}>test</button>
         <h1>로그인</h1>
-        <LoginForm>
+        <LoginForm onSubmit={loginSubmit}>
           <InputWrapper>
             <label>이메일</label>
             <br />
@@ -56,10 +76,7 @@ const Login = () => {
               placeholder="비밀번호를 입력하세요"
             />
           </InputWrapper>
-          <button onClick={handleLogin}>
-            {/* <Link to="../main" style={{ textDecoration: "none" }}></Link> */}
-            로그인
-          </button>
+          <button>로그인</button>
         </LoginForm>
       </LoginWrapper>
     </>
