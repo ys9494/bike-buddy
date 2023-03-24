@@ -47,21 +47,21 @@ export const BannerContainer2 = styled(BannerContainer)`
   background-blend-mode: darken;
   position: relative;
   color: #fff;
-  /* 
-  div {
+
+  > div {
     position: absolute;
     right: 15%;
-    top: 50%;
+    top: 20%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     align-items: right;
     p {
-      font-size: 2.8rem;
+      font-size: 2rem;
       font-weight: bold;
       color: #fff;
-    } 
-  } */
+    }
+  }
 `;
 export const BannerContainer3 = styled(BannerContainer)``;
 export const BannerContainer4 = styled(BannerContainer)``;
