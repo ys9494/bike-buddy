@@ -37,3 +37,9 @@ export const InputWrapper = styled.div`
     width: 400px;
   }
 `;
+
+export const InvalidMessage = styled.div``;
+
+export const GotoLogin = styled.div``;
+
+export const Button = styled.button``;
