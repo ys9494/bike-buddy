@@ -12,7 +12,6 @@ import {
   faClock,
   faLocationDot,
   faPersonBiking,
-  faTruckMedical,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { timeFormat } from "../../commons/utils";
@@ -21,6 +20,7 @@ import { useNavigate } from "react-router";
 import { ROUTE } from "../../routes/route";
 
 import { decodeToken } from "../../commons/utils";
+import Mygathering from "../MygatheringPage/Mygathering";
 
 const GatheringItem = (gatheringItem) => {
   const [isMyGathering, setMyGathering] = useState(false);
@@ -31,14 +31,14 @@ const GatheringItem = (gatheringItem) => {
     if (gatheringItem) {
       const decToken = decodeToken();
       if (decToken) {
-        if (isMyGathering?.owner_user_id === decToken) {
+        if (gatheringItem?.owner_user_id === decToken) {
           setMyGathering(true);
         }
       }
     }
   }, []);
 
-  console.log("is", isMyGathering);
+  console.log(gatheringItem?.owner_user_id, isMyGathering);
 
   const handleApply = async (e) => {
     e.preventDefault();
@@ -82,10 +82,7 @@ const GatheringItem = (gatheringItem) => {
       </GatheringDetail>
 
       {isMyGathering ? (
-        <EditButtonWrapper>
-          <button>수정</button>
-          <button>삭제</button>
-        </EditButtonWrapper>
+        <div></div>
       ) : (
         <ApplyButtonWrapper>
           <button onClick={handleApply}>참가 신청</button>

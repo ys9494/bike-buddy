@@ -44,11 +44,10 @@ export const MygatheringItems = styled.div`
   border-radius: 30px;
 
   p {
-    margin: 10px 0;
+    margin: 5px 0;
     &:first-of-type {
       font-weight: bold;
       color: green;
-      /* font-size: 20px; */
       text-align: left;
 
       span {
@@ -57,8 +56,7 @@ export const MygatheringItems = styled.div`
       }
     }
     span {
-      margin-left: 5px;
-      font-size: 18px;
+      font-size: 1rem;
     }
   }
   > button {

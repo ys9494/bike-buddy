@@ -7,7 +7,7 @@ import {
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import * as API from "../../commons/api";
-//import { ROUTE } from "../../routes/route";
+import { ROUTE } from "../../routes/route";
 import { useNavigate, useParams } from "react-router-dom";
 
 const Usergathering = () => {
@@ -81,6 +81,7 @@ const Usergathering = () => {
         gather_desc: content,
       });
       alert("수정되었습니다.");
+      navigate(ROUTE.MYGATHERING.link);
     } catch (err) {
       console.log("Err", err);
     }
