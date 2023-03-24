@@ -76,11 +76,6 @@ const Signup = () => {
       });
       console.log("data", data);
       navigate(ROUTE.HOME.link);
-      // localStorage.setItem("token", data.token); - 회원가입에서 토큰x
-      // dispatch({
-      //   type: "LOGIN",
-      //   // isAdmin: data.isAdmin,
-      // });
     } catch (err) {
       console.log("Error", err.response.data);
       alert("이미 사용중인 이메일입니다.");

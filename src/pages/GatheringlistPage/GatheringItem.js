@@ -16,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { timeFormat } from "../../commons/utils";
+import * as API from "../../commons/api";
 
 const GatheringItem = (gatheringItem) => {
   const [isApplied, setIsApplied] = useState(faTruckMedical);
@@ -24,13 +25,20 @@ const GatheringItem = (gatheringItem) => {
   //   console.log("test", test);
   // }, [gatheringItem]);
 
+  const handleApply = async (e) => {
+    e.preventDefault();
+
+    const result = await API.post(`apply/${gatheringItem.id}`);
+    console.log("result", result);
+  };
+
   return (
     <GatheringItemWrapper>
       <GatheringDetail>
         <p>{gatheringItem.title}</p>
         <p>
           <FontAwesomeIcon icon={faLocationDot} />
-          <span>{gatheringItem.rental_name}</span>
+          <span>{gatheringItem.rent_name}</span>
         </p>
         <p>
           <FontAwesomeIcon icon={faCalendarDays} />
@@ -49,7 +57,7 @@ const GatheringItem = (gatheringItem) => {
 
       {isApplied ? (
         <ApplyButtonWrapper>
-          <button>참가 신청</button>
+          <button onClick={handleApply}>참가 신청</button>
         </ApplyButtonWrapper>
       ) : (
         <EditButtonWrapper>

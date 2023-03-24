@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   MygatheringWrapper,
   Mygatheringform,
@@ -7,8 +9,18 @@ import {
 import { useMemo } from "react";
 
 import { useMyGatheringList } from "../../hooks/gathering.hook";
+import { useUserState } from "../../context/UserContext";
 
 const Mygathering = () => {
+  const { isLoggedIn } = useUserState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
+
   const me = {
     id: 1,
     name: "Ash Lee",
@@ -26,6 +38,7 @@ const Mygathering = () => {
       return gathering.createdBy.id === me.id;
     });
   }, [myGatheringList, me]);
+
   return (
     <>
       <MygatheringWrapper>
@@ -48,7 +61,7 @@ const Mygathering = () => {
                 <span>{item.time}</span>
                 <br />
                 <span>대여소명</span>
-                <span>{item.rentalshop}</span>
+                <span>{item.rent_name}</span>
                 <br />
               </MygatheringItems>
             );
