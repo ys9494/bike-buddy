@@ -19,7 +19,7 @@ const Main = () => {
           <p> 이용해 본 경험이 있으신가요?</p>
         </div>
       </BannerContainer1>
-      <BannerContainer2>
+      {/* <BannerContainer2>
         <div>
           <div>
             <p>공공자전거란</p>
@@ -37,9 +37,9 @@ const Main = () => {
             </p>
           </div>
         </div>
-      </BannerContainer2>
+      </BannerContainer2> */}
 
-      <BannerContainer3>
+      {/* <BannerContainer3>
         <div>
           <p>공공자전거란</p>
           <p>
@@ -55,7 +55,7 @@ const Main = () => {
             있습니다.
           </p>
         </div>
-      </BannerContainer3>
+      </BannerContainer3> */}
 
       <BannerContainer4>
         <h1>연도별 차트</h1>
