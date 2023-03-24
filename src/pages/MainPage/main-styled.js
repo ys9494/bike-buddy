@@ -19,7 +19,7 @@ export const BannerContainer = styled.div`
 
 export const BannerContainer1 = styled(BannerContainer)`
   height: calc(100vh - 100px);
-  background-image: url("img/seoul-bike-img.png");
+  background-image: url("/img/seoul-bike-img.png");
   background-color: rgba(0, 0, 0, 0.4);
   background-blend-mode: darken;
   position: relative;
