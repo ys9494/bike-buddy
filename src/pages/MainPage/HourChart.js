@@ -64,7 +64,7 @@ const HourChart = () => {
     },
     animation: {
       easing: "easeInOutQuart",
-      duration: 3000,
+      duration: 2000,
     },
     responsive: true,
     scales: {

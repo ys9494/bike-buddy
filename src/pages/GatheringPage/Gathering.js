@@ -7,26 +7,42 @@ import {
 } from "./gathering-styled";
 import * as API from "../../commons/api";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useUserState } from "../../context/UserContext";
+import { ROUTE } from "../../routes/route";
 
 function Gathering() {
-  const { isLoggedIn } = useUserState();
-
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [rentalshop, setRentalShop] = useState("");
-  const [time, setTime] = useState(0);
-  const [count, setCount] = useState(0);
+  const [time, setTime] = useState("");
+  const [count, setCount] = useState("");
   const [content, setContent] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, []);
+
+  const handleTime = (val) => {
+    console.log(val);
+    if (val < 0) {
+      setTime("");
+    } else {
+      setTime(val);
+    }
+  };
+
+  const handleCount = (val) => {
+    console.log(val);
+    if (val < 0) {
+      setCount("");
+    } else {
+      setCount(val);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +59,8 @@ function Gathering() {
     const res = await API.post("/gathering", gatheringData);
 
     console.log("모임 등록", res);
+    alert("모임이 등록되었습니다.");
+    navigate(ROUTE.MYGATHERING.link);
   };
 
   useEffect(() => {
@@ -89,19 +107,21 @@ function Gathering() {
               required
               value={rentalshop}
               onChange={(e) => setRentalShop(e.target.value)}
+              placeholder="대여소를 입력하세요"
               readOnly
             />
           </InputWrapper>
           <InputWrapper>
-            <label>소요시간(분)</label>
+            <label>소요시간</label>
             <br />
             <input
               type="number"
               required
               value={time}
               step="5"
-              onChange={(e) => setTime(e.target.value)}
+              onChange={(e) => handleTime(e.target.value)}
               placeholder="소요시간을 입력하세요"
+              min="1"
             />
           </InputWrapper>
           <InputWrapper>
@@ -111,8 +131,10 @@ function Gathering() {
               type="number"
               required
               value={count}
-              onChange={(e) => setCount(e.target.value)}
-              placeholder="인원을 입력하세요"
+              onChange={(e) => handleCount(e.target.value)}
+              placeholder="인원을 입력하세요(최대 30명)"
+              min="1"
+              max="30"
             />
           </InputWrapper>
           <InputWrapper>
@@ -120,14 +142,12 @@ function Gathering() {
             <br />
             <textarea
               required
-              maxLength="20"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="내용을 입력하세요"
-              style={{ height: "110px", width: "320px" }}
+              style={{ height: "110px" }}
             />
           </InputWrapper>
-          <br />
           <ButtonWrapper>
             <button>등록</button>
           </ButtonWrapper>

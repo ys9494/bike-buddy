@@ -7,7 +7,7 @@ import {
 } from "./Mygathering-styled";
 import { useMemo } from "react";
 import { useMyGatheringList } from "../../hooks/gathering.hook";
-import { useUserState } from "../../context/UserContext";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
@@ -24,14 +24,14 @@ import * as API from "../../commons/api";
 
 const Mygathering = () => {
   const { myGatheringList } = useMyGatheringList();
-  const { isLoggedIn } = useUserState();
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
       navigate("/");
     }
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     console.log(myGatheringList);
@@ -49,31 +49,33 @@ const Mygathering = () => {
     });
   }, [myGatheringList]);
 
+  /** 참가 취소 */
+  const handleCancel = async (id) => {
+    if (window.confirm("참가를 취소하시겠습니까?")) {
+      // const result = await API.delete(`/gathering/delete_member/${id}`);
+      // alert("참가 취소되었습니다.");
+      // console.log("참가 취소", result);
+    }
+  };
+
   /** 수정 */
   const goToEdit = (id) => {
-    if (!isLoggedIn) {
-      navigate("/");
-    } else {
-      navigate(`/gathering/${id}/edit`);
-    }
+    navigate(`/gathering/${id}/edit`);
   };
 
   /** 삭제 */
 
-  const handleDelete = (id) => {
-    if (!isLoggedIn) {
-      navigate("/");
-    } else {
-      if (window.confirm("정말 삭제하시겠습니까?")) {
-        const result = API.delete(`/gathering/${id}`);
-        alert("모임이 삭제되었습니다.");
-        // console.log("삭제완료", result);
-      }
+  const handleDelete = async (id) => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      const result = await API.delete(`/gathering/${id}`);
+      alert("모임이 삭제되었습니다.");
+      console.log("삭제", result);
     }
   };
 
   return (
     <MygatheringWrapper>
+      <h1>내 모임</h1>
       <MygatheringItem>
         <label>참가신청한 모임</label>
         <br />
@@ -83,8 +85,8 @@ const Mygathering = () => {
             {appliedGatheringList &&
               appliedGatheringList?.map((item, index) => {
                 return (
-                  <Grid item xs={12} sm={6} md={4} key={item.id}>
-                    <MygatheringItems key={item.id} className="key">
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <MygatheringItems>
                       <p>
                         <span>{item.title}</span>
                       </p>
@@ -100,7 +102,9 @@ const Mygathering = () => {
                         <FontAwesomeIcon icon={faLocationDot} />
                         <span>{item.rent_name}</span>
                       </p>
-                      <button>참가취소</button>
+                      <button onClick={() => handleCancel(item.id)}>
+                        참가취소
+                      </button>
                     </MygatheringItems>
                   </Grid>
                 );
@@ -117,8 +121,8 @@ const Mygathering = () => {
             {ownGatheringList &&
               ownGatheringList?.map((item, index) => {
                 return (
-                  <Grid item xs={12} sm={6} md={4} key={item.id}>
-                    <MygatheringItems key={item.id}>
+                  <Grid item xs={12} sm={6} md={4} key={index}>
+                    <MygatheringItems>
                       <p>
                         <span>{item.title}</span>
                       </p>

@@ -6,6 +6,12 @@ export const MygatheringWrapper = styled.div`
   background-color: beige;
   border-radius: 30px;
   padding: 20px;
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: green;
+  }
 `;
 
 export const MygatheringItem = styled.div`
@@ -13,13 +19,13 @@ export const MygatheringItem = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 50px;
+  margin-top: 20px;
 
   label {
     font-size: 24px;
     font-weight: bold;
     color: green;
-    text-align: center;
+    /* text-align: center; */
     margin: 30px;
   }
   span {

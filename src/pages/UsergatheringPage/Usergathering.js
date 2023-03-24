@@ -9,11 +9,8 @@ import { Button } from "react-bootstrap";
 import * as API from "../../commons/api";
 //import { ROUTE } from "../../routes/route";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUserState } from "../../context/UserContext";
 
 const Usergathering = () => {
-  const { isLoggedIn } = useUserState();
-
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [rentalshop, setRentalShop] = useState("");
@@ -25,10 +22,10 @@ const Usergathering = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!localStorage.getItem("token")) {
       navigate("/login");
     }
-  }, [isLoggedIn]);
+  }, []);
 
   useEffect(() => {
     console.log("파람스:", params);
@@ -55,6 +52,24 @@ const Usergathering = () => {
       })();
   }, [params]);
 
+  const handleTime = (val) => {
+    console.log(val);
+    if (val < 0) {
+      setTime("");
+    } else {
+      setTime(val);
+    }
+  };
+
+  const handleCount = (val) => {
+    console.log(val);
+    if (val < 0) {
+      setCount("");
+    } else {
+      setCount(val);
+    }
+  };
+
   const handleModify = async () => {
     try {
       await API.patch(`/gathering/${params.id}`, {
@@ -75,6 +90,7 @@ const Usergathering = () => {
   const handleDelete = async () => {
     try {
       await API.delete(`/gathering/${params.id}`);
+      alert("삭제되었습니다.");
     } catch (err) {
       console.log(err);
     }
@@ -117,15 +133,16 @@ const Usergathering = () => {
             />
           </InputWrapper>
           <InputWrapper>
-            <label>소요시간(분)</label>
+            <label>소요시간</label>
             <br />
             <input
               type="number"
               required
               value={time}
               step="5"
-              onChange={(e) => setTime(e.target.value)}
+              onChange={(e) => handleTime(e.target.value)}
               placeholder="소요시간을 입력하세요"
+              min="1"
             />
           </InputWrapper>
           <InputWrapper>
@@ -135,8 +152,10 @@ const Usergathering = () => {
               type="number"
               required
               value={count}
-              onChange={(e) => setCount(e.target.value)}
-              placeholder="인원을 입력하세요"
+              onChange={(e) => handleCount(e.target.value)}
+              placeholder="인원을 입력하세요(최대 30명)"
+              min="1"
+              max="30"
             />
           </InputWrapper>
           <InputWrapper>
@@ -150,7 +169,6 @@ const Usergathering = () => {
               style={{ height: "110px" }}
             />
           </InputWrapper>
-          <br />
           <ButtonWrapper>
             <Button
               variant="success"
