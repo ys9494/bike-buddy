@@ -17,16 +17,21 @@ import {
 
 import { timeFormat } from "../../commons/utils";
 import * as API from "../../commons/api";
+import { useUserState } from "../../context/UserContext";
+import { useNavigate } from "react-router";
 
 const GatheringItem = (gatheringItem) => {
   const [isApplied, setIsApplied] = useState(faTruckMedical);
-  // useEffect(() => {
-  //   const test = timeFormat(gatheringItem.start_time);
-  //   console.log("test", test);
-  // }, [gatheringItem]);
+
+  const { isLoggedIn } = useUserState();
+  const navigate = useNavigate();
 
   const handleApply = async (e) => {
     e.preventDefault();
+
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
 
     const result = await API.post(`apply/${gatheringItem.id}`);
     console.log("result", result);

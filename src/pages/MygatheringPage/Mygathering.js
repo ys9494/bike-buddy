@@ -1,9 +1,4 @@
 import React, { useEffect } from "react";
-<<<<<<< HEAD
-import { useNavigate } from "react-router-dom";
-
-=======
->>>>>>> 973c95cfa19147b84ad8ee9ee8809b626c6c6928
 import {
   MygatheringWrapper,
   MygatheringItems,
@@ -11,25 +6,7 @@ import {
 } from "./Mygathering-styled";
 import { useMemo } from "react";
 import { useMyGatheringList } from "../../hooks/gathering.hook";
-<<<<<<< HEAD
 import { useUserState } from "../../context/UserContext";
-
-const Mygathering = () => {
-  const { isLoggedIn } = useUserState();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn]);
-
-  const me = {
-    id: 1,
-    name: "Ash Lee",
-  };
-
-=======
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarDays,
@@ -41,11 +18,18 @@ import {
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { timeFormat } from "../../commons/utils";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Mygathering = () => {
->>>>>>> 973c95cfa19147b84ad8ee9ee8809b626c6c6928
   const { myGatheringList } = useMyGatheringList();
+  const { isLoggedIn } = useUserState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     console.log(myGatheringList);
@@ -61,11 +45,7 @@ const Mygathering = () => {
     return myGatheringList.filter((gathering) => {
       return gathering.gather_owner !== "F";
     });
-<<<<<<< HEAD
-  }, [myGatheringList, me]);
-=======
   }, [myGatheringList]);
->>>>>>> 973c95cfa19147b84ad8ee9ee8809b626c6c6928
 
   return (
     <MygatheringWrapper>
@@ -107,49 +87,6 @@ const Mygathering = () => {
         </Box>
       </MygatheringItem>
 
-<<<<<<< HEAD
-          {appliedGatheringList.map((item, index) => {
-            return (
-              <MygatheringItems key={item.id} className="key">
-                <span>제목</span>
-                <span>{item.title}</span>
-                <br />
-                <span>날짜</span>
-                <span>{item.date}</span>
-                <br />
-                <span>시간</span>
-                <span>{item.time}</span>
-                <br />
-                <span>대여소명</span>
-                <span>{item.rent_name}</span>
-                <br />
-              </MygatheringItems>
-            );
-          })}
-        </Mygatheringform>
-
-        <Mygatheringform>
-          <label>내가 만든 모임</label>
-          <br />
-
-          {ownGatheringList.map((item, index) => {
-            return (
-              <MygatheringItems key={item.id} className="key">
-                <span>제목</span>
-                <span>{item.title}</span>
-                <span>날짜</span>
-                <span>{item.date}</span>
-                <span>시간</span>
-                <span>{item.time}</span>
-                <span>대여소명</span>
-                <span>{item.rentalshop}</span>
-              </MygatheringItems>
-            );
-          })}
-        </Mygatheringform>
-      </MygatheringWrapper>
-    </>
-=======
       <MygatheringItem>
         <label>내가 만든 모임</label>
         <br />
@@ -187,7 +124,6 @@ const Mygathering = () => {
         </Box>
       </MygatheringItem>
     </MygatheringWrapper>
->>>>>>> 973c95cfa19147b84ad8ee9ee8809b626c6c6928
   );
 };
 export default Mygathering;

@@ -26,7 +26,7 @@ export const useGatheringList = () => {
       setIsLoading(true);
       const response = await fetchGatheringList();
 
-      setGtheringList(response.data);
+      setGtheringList(response?.data?.data);
       setIsLoading(false);
     })();
   }, []);

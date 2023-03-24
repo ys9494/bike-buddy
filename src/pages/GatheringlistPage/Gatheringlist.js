@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useGatheringList } from "../../hooks/gathering.hook";
 import GatheringItem from "./GatheringItem";
 import {
@@ -16,22 +16,11 @@ import { faPeopleGroup, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function Gatheringlist() {
-  // const { gatheringList, isLoading } = useGatheringList();
-  const [gatheringList, setGatheringList] = useState([]);
-
-  // console.log("gatheringList : ", gatheringList);
-
-  const isLoading = false;
-
-  const getGatheringData = async () => {
-    const result = await API.get("/all/gathering");
-    setGatheringList(result?.data?.data);
-    console.log("res", result);
-  };
+  const { gatheringList, isLoading } = useGatheringList();
 
   useEffect(() => {
-    getGatheringData();
-  }, []);
+    console.log("gathering list", gatheringList);
+  }, [gatheringList]);
 
   return (
     <GatheringlistWrapper>

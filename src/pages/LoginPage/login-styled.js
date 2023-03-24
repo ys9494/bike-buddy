@@ -27,6 +27,7 @@ export const LoginForm = styled.form`
     width: 200px;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
   }
 `;
 

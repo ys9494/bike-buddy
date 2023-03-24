@@ -7,8 +7,11 @@ import {
 } from "./gathering-styled";
 import * as API from "../../commons/api";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useUserState } from "../../context/UserContext";
 
 function Gathering() {
+  const { isLoggedIn } = useUserState();
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [rentalshop, setRentalShop] = useState("");
@@ -18,6 +21,12 @@ function Gathering() {
 
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
