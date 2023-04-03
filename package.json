@@ -13,9 +13,6 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
-    "react": "^18.2.0",
-=======
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.2.1",
@@ -25,7 +22,6 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-chartjs-2": "^5.2.0",
->>>>>>> ae6b3686f611e9f24b84412fa8c92a9b924a3500
     "react-dom": "^18.2.0",
     "react-fullpage": "^0.1.19",
     "react-naver-maps": "^0.1.2",
